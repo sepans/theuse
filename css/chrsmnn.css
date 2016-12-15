@@ -1,105 +1,106 @@
-		body { background-color: #FFF; padding: 0; margin: 0; color: #000; line-height: 11px; 
-			font-family:arial, helvetica, sans-serif; font-size: 12px; overflow: hidden; }
-		#container {margin: 30px auto 0 auto; position: relative; width: 1150px; /*height: 700px;*/ overflow: hidden;}
-		h1,h2 {font-size: 12px; font-weight: normal; display: inline; padding: 0 10px;}
-		a, a:visited {color: #000; text-decoration: none;}
-		ul {list-style: none;}
-		
-		.cantquite-title, .thingsidlike-title {
-		    position: absolute;
-		    opacity: 0;
-		    /*
-		    left: -15px;
-		    top: 0;
-		    */
-		}
-		
-		#dot-box { width: 800px; float: left;}
-		#dot-box ul.tracks { margin: 0; }
-		#dot-box ul.tracks li { margin-bottom: 0px; }
-		#dot-box ul.tracks h3  {font-size: 12px; margin: 0; font-weight: normal; float: left; width: 300px; padding-top: 10px;  }
-		#dot-box ul.tracks a { width: 300px; }
-		#dot-box ul.tracks a  span{ float: right; padding-right: 10px; }
-		#dot-box ul.tracks a .title {display: block;}
-		#dot-box ul.tracks a:hover .title {display: none;}
-		#dot-box ul.tracks a .words {display: none; padding-left: 150px; }
-		#dot-box ul.tracks a:hover .words {display: block;}
-		#dot-box ul.tracks .buttons { padding: 0; margin: 0 0 0 -2px;}
-		#dot-box ul.tracks .buttons li { display: inline-block; margin: 0px 12px 8px 0;}
-		.grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 4px;}
-		
-		#text-box {  float: right; width: 250px; padding: 0 10px; margin-right: 5px; display: block;}
-		.search-input { border: 1px solid black; width: 250px; font-size: 12px;}
-		
-		#second-text-box {  position: absolute; right: 265px; top: 0; width: 250px; padding: 0 10px; display: none;  }
+body { background-color: #FFF; padding: 0; margin: 0; color: #000; line-height: 11px; 
+	font-family:arial, helvetica, sans-serif; font-size: 12px; overflow: hidden; }
+#container {margin: 30px auto 0 auto; position: relative; width: 1150px; /*height: 700px;*/ overflow: hidden;}
+h1,h2 {font-size: 12px; font-weight: normal; display: inline; padding: 0 10px;}
+a, a:visited {color: #000; text-decoration: none;}
+ul {list-style: none;}
 
-		#third-text-box {  position: absolute; right: 525px; top: 0; width: 250px; padding: 0 10px;  display: none; background-color: rgba(255,255,255,0.8) }
-		
-		.text-container { margin: 10px 0; text-align: justify; line-height: 18px; font-size: 11px; width: 100%; font-size: 12px; background-color: #FFF;}
-		.text-container div { /*padding-right: 8px;*/  margin: 10px 0;}
-		.text-container ul {padding:0 2px 0 0;}
-		.text-container li {list-style: none; background-color: #FFF;}
-		.text-container h3 {font-weight: normal; font-size: 1em;}
-		
-		
-		.text-dragable-cnt { height: 660px; overflow: hidden;}
-		.text-dragable-cnt:hover {/*background-color: #F00;*/ overflow-y: auto !important; }
-		
-		.text-dragable-cnt .text-container p { padding-right: 2px;}
-		.text-dragable-cnt .text-container ul { padding-right: 2px;}
-		.text-dragable-cnt:hover .text-container p { padding-right: 2px !important;}
-		.text-dragable-cnt:hover .text-container ul { padding-right: 2px !important;}
+.cantquite-title, .thingsidlike-title {
+    position: absolute;
+    opacity: 0;
+    /*
+    left: -15px;
+    top: 0;
+    */
+}
 
-		.rew {width: 25px; height: 8px; display: block; position: absolute;}
-		.rew_btn {cursor: pointer;width: 8px; height: 8px; display: block; opacity: 0;}
-		.percent_box { opacity: 0; width: 10px; height: 8px;  font-size: 8px; line-height: 8px; display:inline-block;}
-		
-		#youarehere { width: 200px; height: 200px; position: absolute; top: 150px; left: 240px; background-image: url('../../images/youarehere.gif'); display:none;}
-		
-		#mute_video { margin-left: 445px; margin-top: -15px;}
-		#headphones {margin-left: 130px;padding-bottom: 5px;display: inline-block;width: 200px;text-align: right;}
-		#hp {} 
-		
-		#download-list { display: none; position: absolute; width: 420px; left: 430px; top: 50px; border: 1px solid black; padding: 0 10px; background: #FFF; font-size: 12px; }
-		#download-list li { margin: 16px 0;}
-		#download-list a { margin: 0 15px; } 
-		#download-list h3 { font-weight: normal; display: inline; font-size: 12px;}
-		#download-list .links { width:  140px; float: right;}
-		
-		#video-dots {position: absolute; right: 0px; bottom: 20px; }
-		#video-dots a {margin-top: 20px; display: block;}
-		
-		video { position: absolute; bottom: 150px; right: 200px; display: none; } 
-		#vid6-container { position: absolute; top: 150px; right: 200px; width: 284px; height: 400px; overflow: hidden; display:none } 
-		#vid6 { position: relative; bottom: 0; right: 0;}
+#dot-box { width: 800px; float: left;}
+#dot-box ul.tracks { margin: 0; }
+#dot-box ul.tracks li { margin-bottom: 0px; }
+#dot-box ul.tracks h3  {font-size: 12px; margin: 0; font-weight: normal; float: left; width: 300px; padding-top: 10px;  }
+#dot-box ul.tracks .title-btn { width: 300px; }
+#dot-box ul.tracks a  span{ float: right; padding-right: 10px; }
+#dot-box ul.tracks a .title {display: block;}
+#dot-box ul.tracks a:hover .title {display: none;}
+#dot-box ul.tracks a .words {display: none; padding-left: 150px; }
+#dot-box ul.tracks a:hover .words {display: block;}
+#dot-box ul.tracks .buttons { padding: 0; margin: 0 0 0 -2px;}
+#dot-box ul.tracks .buttons li { display: inline-block; margin: 0px 12px 8px 0;}
+.grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 4px;}
 
-		#pencil-container { position: absolute; top: 50px; right: 270px; width: 376px; height: 198px; overflow: hidden; display:none } 
-		#pencil { position: relative; left: -2px; top: -2px; pointer-events: none; opacity: 0.95; width: 380px;}
-		
-		#control-dots {position: absolute; right: 0px; top: 35px;}
-		#control-dots a {margin-bottom: 20px; display: block;}
-		
-		.side_btns a span { opacity: 0; margin-left: -160px; float: right; padding-top: 10px;  }
-		.side_btns a:hover span { opacity: 1; }
-		.side_btns .grey_button { cursor: pointer; display: block;}
-		
-		._jsPlumb_endpoint { opacity: 0.3; cursor: move;}
-		
-		.synth {  max-width: 250px;  position: absolute; line-height: 14px; background-color:rgb(255,255,255); text-align: justify;}
-		.blue_synth {color: #00F;  background-color:rgba(255,255,255,0.9);}
-		.red_synth {color: #F00; background-color:rgba(255,255,255,0.75);}
-		
-		.synth .handle {width: 8px; height: 8px; position: absolute; top: -5px; right: -7px; border-top: 1px solid #555;border-right: 1px solid #888; cursor: move; background-color: #FFF;}
+#text-box {  float: right; width: 250px; padding: 0 10px; margin-right: 5px; display: block;}
+.search-input { border: 1px solid black; width: 250px; font-size: 12px;}
 
-        .hint-box-container {position: absolute; top: -1px; left: 334px;}
-        #hint-box { color: #555;background-color: #FEFEAA;text-align: right; vertical-align: right; border: 1px dotted #AAA;float: right;margin: 2px 5px;}
-        
-        #dice1, #dice2 {position: absolute; display: none; color: #00F; text-align: justify; background-color: rgba(255,255,255,0.65); top: 20%; right: 0%;}
-        #dice1 { z-index: 99;}
-        #dice2 { z-index: 101;}
-        .black_overlay {width: 100%; height: 100%; margin: 0; background: black; display:none; position: absolute; top: 0; left:0; z-index: 100;}
-        
-        #filter-controller {position: absolute; top: 5px; left: 30px; cursor: default !important; background-color:white;border-radius: 15px; z-index: 2; display: none;  }
-        .filter-corner-effect {position: absolute; top: 5px; left: 30px;   width: 78px; height: 78px;}
-        
-        #filter-controller .grey_button {position: absolute; top: 38px; left: 38px; cursor: default; background-color: #BBB; }
+#second-text-box {  position: absolute; right: 265px; top: 0; width: 250px; padding: 0 10px; display: none;  }
+
+#third-text-box {  position: absolute; right: 525px; top: 0; width: 250px; padding: 0 10px;  display: none; background-color: rgba(255,255,255,0.8) }
+
+.text-container { margin: 10px 0; text-align: justify; line-height: 18px; font-size: 11px; width: 100%; font-size: 12px; background-color: #FFF;}
+.text-container div { /*padding-right: 8px;*/  margin: 10px 0;}
+.text-container ul {padding:0 2px 0 0;}
+.text-container li {list-style: none; background-color: #FFF;}
+.text-container h3 {font-weight: normal; font-size: 1em;}
+
+
+.text-dragable-cnt { height: 660px; overflow: hidden;}
+.text-dragable-cnt:hover {/*background-color: #F00;*/ overflow-y: auto !important; }
+
+.text-dragable-cnt .text-container p { padding-right: 2px;}
+.text-dragable-cnt .text-container ul { padding-right: 2px;}
+.text-dragable-cnt:hover .text-container p { padding-right: 2px !important;}
+.text-dragable-cnt:hover .text-container ul { padding-right: 2px !important;}
+
+.rew {width: 25px; height: 8px; display: block; position: absolute;}
+.rew_btn {cursor: pointer;width: 8px; height: 8px; display: block; opacity: 0;}
+.percent_box { opacity: 0; width: 10px; height: 8px;  font-size: 8px; line-height: 8px; display:inline-block;}
+
+#youarehere { width: 200px; height: 200px; position: absolute; top: 150px; left: 240px; background-image: url('../../images/youarehere.gif'); display:none;}
+
+#mute_video { margin-left: 445px; margin-top: -15px;}
+#headphones {margin-left: 130px;padding-bottom: 5px;display: inline-block;width: 200px;text-align: right;}
+#hp {} 
+
+#download-list { display: none; position: absolute; width: 420px; left: 430px; top: 50px; border: 1px solid black; padding: 0 10px; background: #FFF; font-size: 12px; }
+#download-list li { margin: 16px 0;}
+#download-list a { margin: 0 15px; } 
+#download-list h3 { font-weight: normal; display: inline; font-size: 12px;}
+#download-list .links { width:  140px; float: right;}
+
+#video-dots {position: absolute; right: 0px; bottom: 20px; }
+#video-dots a {margin-top: 20px; display: block;}
+
+video { position: absolute; bottom: 150px; right: 200px; display: none; } 
+#vid6-container { position: absolute; top: 150px; right: 200px; width: 284px; height: 400px; overflow: hidden; display:none } 
+#vid6 { position: relative; bottom: 0; right: 0;}
+
+#pencil-container { position: absolute; top: 50px; right: 270px; width: 376px; height: 198px; overflow: hidden; display:none } 
+#pencil { position: relative; left: -2px; top: -2px; pointer-events: none; opacity: 0.95; width: 380px;}
+
+#control-dots {position: absolute; right: 0px; top: 35px;}
+#control-dots a {margin-bottom: 20px; display: block;}
+
+.side_btns a span { opacity: 0; margin-left: -160px; float: right; padding-top: 10px;  }
+.side_btns a:hover span { opacity: 1; }
+.side_btns .grey_button { cursor: pointer; display: block;}
+
+._jsPlumb_endpoint { opacity: 0.3; cursor: move;}
+
+.synth {  max-width: 250px;  position: absolute; line-height: 14px; background-color:rgb(255,255,255); text-align: justify;}
+.blue_synth {color: #00F;  background-color:rgba(255,255,255,0.9);}
+.red_synth {color: #F00; background-color:rgba(255,255,255,0.75);}
+
+.synth .handle {width: 8px; height: 8px; position: absolute; top: -5px; right: -7px; border-top: 1px solid #555;border-right: 1px solid #888; cursor: move; background-color: #FFF;}
+
+.hint-box-container {position: absolute; top: -1px; left: 334px;}
+#hint-box { color: #555;background-color: #FEFEAA;text-align: right; vertical-align: right; border: 1px dotted #AAA;float: right;margin: 2px 5px;}
+
+#dice1, #dice2 {position: absolute; display: none; color: #00F; text-align: justify; background-color: rgba(255,255,255,0.65); top: 20%; right: 0%;}
+#dice1 { z-index: 99;}
+#dice2 { z-index: 101;}
+.black_overlay {width: 100%; height: 100%; margin: 0; background: black; display:none; position: absolute; top: 0; left:0; z-index: 100;}
+
+#filter-controller {position: absolute; top: 5px; left: 30px; cursor: default !important; background-color:white;border-radius: 15px; z-index: 2; display: none;  }
+.filter-corner-effect {position: absolute; top: 5px; left: 30px;   width: 78px; height: 78px;}
+
+#filter-controller .grey_button {position: absolute; top: 38px; left: 38px; cursor: default; background-color: #BBB; }
+
