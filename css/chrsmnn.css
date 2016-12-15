@@ -102,10 +102,11 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 #filter-controller .grey_button {position: absolute; top: 38px; left: 38px; cursor: default; background-color: #BBB; }
 
+/* only show one btn for youknow and dunno */
+
 #dot-box ul.tracks li#item-3322 .buttons .segment { display: none;}
 #dot-box ul.tracks li#item-3322 .buttons .segment:first-child { display: inline-block;}
 
-/* only show one btn for youknow and dunno */
 #dot-box ul.tracks li#item-3323 .buttons .segment { display: none;}
 #dot-box ul.tracks li#item-3323 .buttons .segment:first-child { display: inline-block;}
 

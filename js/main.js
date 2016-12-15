@@ -4,9 +4,6 @@ var mouseDown = 0;
 
 var showTextCount=0;
 
-
-
-
 var audiochannels = new Array();
 
 var _videoPlaying = 0;
@@ -22,8 +19,6 @@ var response = [];
 var writeCount = 0;
   
 var enableFilters = false;
-  
-
 
 var context;
  
@@ -560,7 +555,16 @@ $(document).ready(function() {
 						
 		audiochannels[a]['finished'] = -1;							
 		
-		audiochannels[a]['channel'].src = sourceFiles[a];
+		var sourceFileLookupIndex = a;
+
+		// for dunno and youknow randomly play one of the tracks
+		if(a===46) {
+			sourceFileLookupIndex = sourceFileLookupIndex + Math.round(Math.random() * 70)
+		}
+		else if (a===116) {
+			sourceFileLookupIndex = sourceFileLookupIndex + Math.round(Math.random() * 99)
+		}
+		audiochannels[a]['channel'].src = sourceFiles[sourceFileLookupIndex];
 		audiochannels[a]['channel'].load();
 
 	}
@@ -645,9 +649,9 @@ $(document).ready(function() {
 	        togglePlayPencil();
 	    
 	    }
+	    //for dunno and youknow (id 3322 and 3323 loadTrack randomizes playing track)
 	
-		//TODO make these based on itemId...
-		if(audiochannels[index]===null) {
+		if(audiochannels[index]==undefined) {
 			loadTrack(index);       // it also plays the track for the first time so tracksplaying++ needed
 			tracksPlaying++;
 
@@ -658,6 +662,8 @@ $(document).ready(function() {
 	        switchChannels = true;
 	    }
 	    */
+
+		//TODO make these based on itemId...
 		var twinz = false;
 		if(sourceFiles[index].indexOf('_twinz')>0) {
 	        console.log('twinz');
