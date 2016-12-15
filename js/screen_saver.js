@@ -123,7 +123,7 @@ var ScreenSaver = function(window, $,sentences,options) {
         
     }
 
-    init(options);
+    //init(options);
     
     return screen_saver;
     

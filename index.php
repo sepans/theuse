@@ -4,12 +4,8 @@
 		
 	
 	<link rel="stylesheet" href="css/chrsmnn.css" type="text/css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	
-	<style type="text/css">
-
-	
-	</style>
 	<script type="text/javascript">
 
 	<?php
@@ -92,7 +88,7 @@ while($row = mysql_fetch_array($results))
   ?>
   
 				<li class="item">
-					<h3><a href="#" onclick="loadText('<?php echo $item_id; ?>')"><span class="title" id="title<?php echo $item_id; ?>"><?php echo $display_title; ?></span><span class="words"><?php echo $words; ?> words</span></a></h3>
+					<h3><a href="#" class="title-btn" onclick="loadText('<?php echo $item_id; ?>')"><span class="title" id="title<?php echo $item_id; ?>"><?php echo $display_title; ?></span><span class="words"><?php echo $words; ?> words</span></a></h3>
 					<div id="<?php echo $title; ?>Body" style="display: none" class="item_body">
 						<p><?php echo $display_title; ?></p>
 						<?php /* echo $body */?>
