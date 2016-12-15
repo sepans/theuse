@@ -621,24 +621,23 @@ $(document).ready(function() {
 
 	
 	
-	function playTrack(link,index) {
+	function playTrack(link,index, itemId, itemSegmentCount) {
 	    
-	    // for making an exception for theintro. index needs to be updated as new tracks are added
-	    // not a clean solution.
-	    if(index===0) {
+	    // for making an exception for theintro.
+	    if(itemId===96 && itemSegmentCount===0) {
 	        $('#vid6-container').toggle();
 	        playvideo('vid6','theintro.webm',$('#grey_btn_0').parent()); 
 	    
 	        return;
 	    }
-	    else if(index===1) {
+	    else if(itemId===96 && itemSegmentCount===1) {
 	        var state=$('#state1').val();
 	        if(state==='rest'){
 	            loadText(3328);
 	        }
 	        return;
 	    }
-	    else if(index===2) {
+	    else if(itemId===96 && itemSegmentCount===2) {
 	        var state=$('#state2').val();
 	        if(state==='rest'){
     	        loadText(3330);
@@ -647,7 +646,8 @@ $(document).ready(function() {
 	    
 	    }
 	
-		if(audiochannels[index]==null) {
+		//TODO make these based on itemId...
+		if(audiochannels[index]===null) {
 			loadTrack(index);       // it also plays the track for the first time so tracksplaying++ needed
 			tracksPlaying++;
 

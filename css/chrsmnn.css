@@ -21,9 +21,7 @@ ul {list-style: none;}
 #dot-box ul.tracks .title-btn { width: 300px; }
 #dot-box ul.tracks a  span{ float: right; padding-right: 10px; }
 #dot-box ul.tracks a .title {display: block;}
-#dot-box ul.tracks a:hover .title {display: none;}
 #dot-box ul.tracks a .words {display: none; padding-left: 150px; }
-#dot-box ul.tracks a:hover .words {display: block;}
 #dot-box ul.tracks .buttons { padding: 0; margin: 0 0 0 -2px;}
 #dot-box ul.tracks .buttons li { display: inline-block; margin: 0px 12px 8px 0;}
 .grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 4px;}
@@ -33,7 +31,7 @@ ul {list-style: none;}
 
 #second-text-box {  position: absolute; right: 265px; top: 0; width: 250px; padding: 0 10px; display: none;  }
 
-#third-text-box {  position: absolute; right: 525px; top: 0; width: 250px; padding: 0 10px;  display: none; background-color: rgba(255,255,255,0.8) }
+#third-text-box {  position: absolute; right: 525px; top: 0; width: 250px; padding: 0 10px;  display: none;/* background-color: rgba(255,255,255,0.8)*/ }
 
 .text-container { margin: 10px 0; text-align: justify; line-height: 18px; font-size: 11px; width: 100%; font-size: 12px; background-color: #FFF;}
 .text-container div { /*padding-right: 8px;*/  margin: 10px 0;}
@@ -103,6 +101,20 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 .filter-corner-effect {position: absolute; top: 5px; left: 30px;   width: 78px; height: 78px;}
 
 #filter-controller .grey_button {position: absolute; top: 38px; left: 38px; cursor: default; background-color: #BBB; }
+
+#dot-box ul.tracks li#item-3322 .buttons .segment { display: none;}
+#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { display: inline-block;}
+
+/* only show one btn for youknow and dunno */
+#dot-box ul.tracks li#item-3323 .buttons .segment { display: none;}
+#dot-box ul.tracks li#item-3323 .buttons .segment:first-child { display: inline-block;}
+
+@media not screen and (min-width: 320px) and (max-width: 479px) {
+
+	#dot-box ul.tracks a:hover .title {display: none;}
+	#dot-box ul.tracks a:hover .words {display: block;}
+
+}
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
 	#container {

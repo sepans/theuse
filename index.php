@@ -69,6 +69,7 @@ $results = mysql_query($sql) or die(mysql_error());
 $content = '';
 $item_count = 0;
 $segment_count = 0;
+$item_segment_count = 0;
 while($row = mysql_fetch_array($results))
  {
   $title = $row['title'];
@@ -87,7 +88,7 @@ while($row = mysql_fetch_array($results))
 
   ?>
   
-				<li class="item">
+				<li class="item" id="item-<?php echo $item_id; ?>">
 					<h3><a href="#" class="title-btn" onclick="loadText('<?php echo $item_id; ?>')"><span class="title" id="title<?php echo $item_id; ?>"><?php echo $display_title; ?></span><span class="words"><?php echo $words; ?> words</span></a></h3>
 					<div id="<?php echo $title; ?>Body" style="display: none" class="item_body">
 						<p><?php echo $display_title; ?></p>
@@ -109,7 +110,7 @@ while($row = mysql_fetch_array($results))
 							
 							<span class="percent_box" id="percent_<?php echo $segment_count; ?>"></span>
 							<span id="rew_btn_cnt<?php echo $segment_count; ?>" class="rew">
-								<span class="rew_btn" id="rew_btn_<?php echo $segment_count; ?>" onclick="playTrack($('#grey_btn_<?php echo $segment_count; ?>'),<?php echo $segment_count; ?>);"></span>
+								<span class="rew_btn" id="rew_btn_<?php echo $segment_count; ?>" onclick="playTrack($('#grey_btn_<?php echo $segment_count; ?>'),<?php echo $segment_count; ?>,<?php echo $item_id; ?>,<?php echo $item_segment_count; ?>);"></span>
 							</span>
 							<!--<a class="button" id="grey_btn_<?php echo $segment_count; ?>" href="#" >&nbsp;</a>-->
 							<span class="grey_button"  id="grey_btn_<?php echo $segment_count; ?>"></span>
@@ -130,12 +131,14 @@ while($row = mysql_fetch_array($results))
 						</li> 
   <?php
 				$segment_count++;
+				$item_segment_count++;
 			}
 	?>
 				</ul>
 			</li>  
 
 	<?php
+	$item_segment_count = 0;
 	$item_count++;
   }
   ?>
