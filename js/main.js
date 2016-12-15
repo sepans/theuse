@@ -23,6 +23,15 @@ var enableFilters = false;
 var context;
  
 var current_search_container = 1;
+
+var MOBILE_QUERY = 'only screen and (min-width: 320px) and (max-width: 479px)';
+var isMobile = window.matchMedia(MOBILE_QUERY).matches;
+
+
+var touchstartX = 0;
+var touchstartY = 0;
+var touchendX = 0;
+var touchendY = 0;
  
  
 var BLUE_ENDPOINT_OPTS = { endpoint:"Rectangle",
@@ -105,6 +114,42 @@ $(document).ready(function() {
         $('.thingsidlike-title').css('opacity',0);
     
     });  
+
+    console.log('ismobile', isMobile)
+    if(isMobile) {
+
+    	var textContainers = document.querySelectorAll('.text-container')
+
+    	textContainers.forEach(function(containerEl) {
+
+    		containerEl.addEventListener('touchstart', function(event) {
+				touchstartX = event.touches[0].screenX;
+			    touchstartY = event.touches[0].screenY;
+    		})
+    		containerEl.addEventListener('touchmove', function(event) {
+    			touchendX = event.touches[0].screenX;
+    			touchendY = event.touches[0].screenY;
+
+    			if( touchendX - touchstartX > 30 ) {
+    				touchstartX = null;
+    				this.classList.remove('active')
+    			}
+    			
+    		})
+
+    	})
+
+	    // document.getElementById('text-container').addEventListener('touchmove', function() {
+	    // 	//console.log('swiped ', this)
+	    // 	this.classList.remove('active')
+	    // })
+
+		//$('.text-container').on('swiperight', function() {
+		//	console.log('swipe', this)
+		//	this.removeClass('active')
+		//})
+
+    }
         
 
 
@@ -198,7 +243,7 @@ $(document).ready(function() {
 
   	var pageHeight = $(window).height();
 	if(pageHeight<650) {
-	  $('#dot-box ul.tracks .buttons li').css('margin-bottom','5px');
+	  $('#dot-box ul.tracks .buttons li').css('margin-bottom','10px');
 	  $('#video-dots').css('bottom','90px');
 	}
 	else if(pageHeight<670) {
@@ -232,55 +277,55 @@ $(document).ready(function() {
 	$('.search-input').val('');
 		
 	
-		jsPlumb.ready(function() {
+	jsPlumb.ready(function() {
 
-			jsPlumb.Defaults.Container = $("body");
-			jsPlumb.importDefaults({
-			    ConnectorZIndex:4000,
-			    Connector :  "Straight" ,
-			  //  Endpoint : "Blank",
-			    PaintStyle : { lineWidth : 1, strokeStyle : "#00F" },
-  				Anchors : [ "TopCenter", "BottomCenter" ]
-  			});
-  			
-  			jsPlumb.bind("jsPlumbConnection", function(info) {
-  		        
-  		        var sourceText = info.source.text();
-  		        var targetText = info.target.text();
-  		        //sourceText=sourceText.replace(/\W/g, '');
-  		        //targetText=targetText.replace(/\W/g, '');
-  		        console.log('source '+sourceText);
-  		        console.log('target '+targetText);
-  		        
-  		        $.getJSON("search_all.php?keyword="+sourceText+"&one=one", function(data1) {
-  		            console.log(data1);
-                    $.getJSON("search_all.php?keyword="+targetText+"&one=one", function(data2) {
-      		            console.log(data2);
-      		            
-      		            $.ajax({
-                            url: 'markov.php?order=5&length='+500+'&begining='+sourceText+'&content='+data1[0].sentence.substring(0,2000).trim()+' '+data2[0].sentence.substring(0,2000).trim(),
-                            context: document.body
-                            }).done(function(data) { 
-                            
-                             console.log(info.source);
-                             console.log(info.source.parents('.synth').length>0);
+		jsPlumb.Defaults.Container = $("body");
+		jsPlumb.importDefaults({
+		    ConnectorZIndex:4000,
+		    Connector :  "Straight" ,
+		  //  Endpoint : "Blank",
+		    PaintStyle : { lineWidth : 1, strokeStyle : "#00F" },
+				Anchors : [ "TopCenter", "BottomCenter" ]
+			});
+			
+			jsPlumb.bind("jsPlumbConnection", function(info) {
+		        
+		        var sourceText = info.source.text();
+		        var targetText = info.target.text();
+		        //sourceText=sourceText.replace(/\W/g, '');
+		        //targetText=targetText.replace(/\W/g, '');
+		        console.log('source '+sourceText);
+		        console.log('target '+targetText);
+		        
+		        $.getJSON("search_all.php?keyword="+sourceText+"&one=one", function(data1) {
+		            console.log(data1);
+                $.getJSON("search_all.php?keyword="+targetText+"&one=one", function(data2) {
+  		            console.log(data2);
+  		            
+  		            $.ajax({
+                        url: 'markov.php?order=5&length='+500+'&begining='+sourceText+'&content='+data1[0].sentence.substring(0,2000).trim()+' '+data2[0].sentence.substring(0,2000).trim(),
+                        context: document.body
+                        }).done(function(data) { 
+                        
+                         console.log(info.source);
+                         console.log(info.source.parents('.synth').length>0);
 
-                             generateMarkov(data,100,100,sourceText,targetText,info);
-                       });								
-                                        
+                         generateMarkov(data,100,100,sourceText,targetText,info);
+                   });								
+                                    
 
-                    
-                    });
-  		        });
+                
+                });
+		        });
 
-  		        
-  		        //console.log(sourceText);
-  		        
-  		        
-  		      
-  		  });
+		        
+		        //console.log(sourceText);
+		        
+		        
+		      
+		  });
 
-      });  //jsplumb	
+  	});  //jsplumb	
       
       
 	
@@ -303,6 +348,7 @@ $(document).ready(function() {
             //var selection =  getSelectionHtml();//t = (document.all) ? document.selection.createRange().text : document.getSelection();
             
             var selection = t = (document.all) ? document.selection.createRange().text : document.getSelection();
+            console.log('selecttext', selection, selection.focusOffset-selection.anchorOffset>2)
             if(selection.focusOffset-selection.anchorOffset>2) {
                 
                 var searchResult = $(element).find('ul').length>0;
@@ -844,7 +890,7 @@ $(document).ready(function() {
 	function loadText(itemId,container_index) {
 
 		$.getJSON("search.php?id="+itemId+"", function(data) {
-		    loadTextCallback(container_index, data)
+		    loadTextCallback(isMobile ? 1 : container_index, data)
 	    });		
 		return false;
 	}
@@ -881,6 +927,8 @@ $(document).ready(function() {
                 current_search_container = 1;
 
             }
+
+    	    text_container.addClass('active')
             
             text_container.html('<h3>'+data[0].display_title+'</h3><p>'+data[0].body+'</p>');
             text_container.css('top',0);

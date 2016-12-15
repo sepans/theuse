@@ -118,6 +118,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) {
+	html, body, #container {
+		height: 100%;
+	}
+
 	#container {
 		width: auto;
 	}
@@ -126,15 +130,15 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		float: none;
 	}
 	#dot-box ul.tracks {
-		padding: 0 10px;
+		padding: 0 20px;
 		display: table-caption;
-		height: 500px;
+		height: 90%;
 		-moz-column-count: 8;
-	    -moz-column-gap: 5px;
+	    -moz-column-gap: 15px;
 	    -webkit-column-count: 8;
-	    -webkit-column-gap: 5px;
+	    -webkit-column-gap: 15px;
 	    column-count: 8;
-	    column-gap: 5px;		
+	    column-gap: 15px;		
 	}
 	#dot-box ul.tracks li {
 		/*display: inline-flex;*/
@@ -159,11 +163,41 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	}
 
 	#youarehere {
-		left: 40px !important;
+		left: 10px !important;
 	}
 	#headphones {
 		margin-left: 0;
 	}
+
+	.search-input {
+		display: none;
+	}
+
+	#control-dots {
+		right: 20px;
+	}
+
+	.text-container {
+		top: 0px;
+    	position: absolute;
+    	height: 90%;
+		overflow: scroll;
+		width: 80%;
+		left: 21px;
+		transform: translateX(600px);
+		transition: transform 0.3s ease-in;
+		overflow-x: hidden;
+	}
+
+	.text-container.active {
+		transform: translateX(0);
+	}
+
+	#video-dots {
+		right: 20px;
+		bottom: 20px;
+	}
+
 
 }
 

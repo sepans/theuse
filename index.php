@@ -221,7 +221,9 @@ while($row = mysql_fetch_array($results))
 	</ul>
 	
 	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
-	
+
+	<script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 
 	<script type="text/javascript" src="js/jquery.window.min.js"></script>
