@@ -24,7 +24,7 @@ ul {list-style: none;}
 #dot-box ul.tracks a .words {display: none; padding-left: 150px; }
 #dot-box ul.tracks .buttons { padding: 0; margin: 0 0 0 -2px;}
 #dot-box ul.tracks .buttons li { display: inline-block; margin: 0px 12px 8px 0;}
-.grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 4px;}
+.grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 50%;}
 
 #text-box {  float: right; width: 250px; padding: 0 10px; margin-right: 5px; display: block;}
 .search-input { border: 1px solid black; width: 250px; font-size: 12px;}
@@ -124,6 +124,8 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 	#container {
 		width: auto;
+		height: 90%;
+
 	}
 	#dot-box {
 		width: 100%;
@@ -151,9 +153,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	}
 	#dot-box ul.tracks .title-btn { 
 		background-color: #AAA;
-	    height: 6px;
+	    height: 7px;
 	    display: inline-block;
-	    width: 25px;
+	    width: 30px;
+	    margin-bottom: 5px;
 	}
 	#dot-box ul.tracks a .title, #dot-box ul.tracks a .title  { 
 		display: none;
@@ -180,13 +183,14 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	.text-container {
 		top: 0px;
     	position: absolute;
-    	height: 90%;
+    	height: 95%;
 		overflow: scroll;
 		width: 80%;
 		left: 21px;
 		transform: translateX(600px);
 		transition: transform 0.3s ease-in;
 		overflow-x: hidden;
+		z-index: 100;
 	}
 
 	.text-container.active {
@@ -196,6 +200,15 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	#video-dots {
 		right: 20px;
 		bottom: 20px;
+	}
+
+	.grey_button {
+		width: 12px;
+		height: 12px;
+	}
+
+	.hint-box-container {
+		display: none;
 	}
 
 

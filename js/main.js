@@ -129,8 +129,7 @@ $(document).ready(function() {
     		containerEl.addEventListener('touchmove', function(event) {
     			touchendX = event.touches[0].screenX;
     			touchendY = event.touches[0].screenY;
-
-    			if( touchendX - touchstartX > 30 ) {
+    			if( touchstartX && touchendX - touchstartX > 30 ) {
     				touchstartX = null;
     				this.classList.remove('active')
     			}
