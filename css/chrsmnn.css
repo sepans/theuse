@@ -16,7 +16,7 @@ ul {list-style: none;}
 
 #dot-box { width: 800px; float: left;}
 #dot-box ul.tracks { margin: 0; }
-#dot-box ul.tracks li { margin-bottom: 0px; }
+#dot-box ul.tracks li { margin-bottom: 0px; display: flex;}
 #dot-box ul.tracks h3  {font-size: 12px; margin: 0; font-weight: normal; float: left; width: 300px; padding-top: 10px;  }
 #dot-box ul.tracks .title-btn { width: 300px; }
 #dot-box ul.tracks a  span{ float: right; padding-right: 10px; }
@@ -104,11 +104,11 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 /* only show one btn for youknow and dunno */
 
-#dot-box ul.tracks li#item-3322 .buttons .segment { display: none;}
-#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { display: inline-block;}
+#dot-box ul.tracks li#item-3322 .buttons .segment { /*display: none;*/margin: 0; margin-left: -10px;}
+#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { /*display: inline-block;*/  margin-left: 0px;}
 
-#dot-box ul.tracks li#item-3323 .buttons .segment { display: none;}
-#dot-box ul.tracks li#item-3323 .buttons .segment:first-child { display: inline-block;}
+#dot-box ul.tracks li#item-3323 .buttons .segment { /*display: none;*/margin: 0; margin-left: -10px;}
+#dot-box ul.tracks li#item-3323 .buttons .segment:first-child { /*display: inline-block;*/  margin-left: 0px;}
 
 @media not screen and (min-width: 320px) and (max-width: 479px) {
 
@@ -117,7 +117,7 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 }
 
-@media only screen and (min-width: 320px) and (max-width: 479px) {
+@media only screen and (min-width: 320px) and (max-width: 767px) {
 	html, body, #container {
 		height: 100%;
 	}
@@ -126,6 +126,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		width: auto;
 		height: 90%;
 
+	}
+	#headphones {
+		width: 100%;
+		text-align: center;
 	}
 	#dot-box {
 		width: 100%;
@@ -214,7 +218,16 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 }
 
-@media only screen and (min-width: 480px) and (max-width: 767px){ }
+@media only screen and (min-width: 320px) and (max-width: 479px) { }
+
+@media only screen and (min-width: 480px) and (max-width: 767px){ 
+	#dot-box ul.tracks {
+		height: 300px;
+	}
+	#youarehere {
+		top: 40px !important;
+	}
+}
 
 @media only screen and (min-width: 768px) and (max-width: 991px){ }
 

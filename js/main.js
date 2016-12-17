@@ -529,11 +529,10 @@ $(document).ready(function() {
 
 	function loadTrack(a) {
 	
-	console.log('track index: '+a);
 	
-	 //   var switchChannels = false; // to enforce the track to played in stereo
+		 //   var switchChannels = false; // to enforce the track to played in stereo
 	
-	/*    if(sourceFiles[a].indexOf('_switchChannels')>0) {
+		/*    if(sourceFiles[a].indexOf('_switchChannels')>0) {
 	        console.log('switchChannels');
 	        switchChannels = true;
 	    }*/
@@ -603,12 +602,14 @@ $(document).ready(function() {
 		var sourceFileLookupIndex = a;
 
 		// for dunno and youknow randomly play one of the tracks
+		/*
 		if(a===46) {
 			sourceFileLookupIndex = sourceFileLookupIndex + Math.round(Math.random() * 70)
 		}
 		else if (a===116) {
 			sourceFileLookupIndex = sourceFileLookupIndex + Math.round(Math.random() * 99)
 		}
+		*/
 		audiochannels[a]['channel'].src = sourceFiles[sourceFileLookupIndex];
 		audiochannels[a]['channel'].load();
 
@@ -724,6 +725,9 @@ $(document).ready(function() {
 		var audio=document.getElementById(trackId);
 		if(state=='rest') {
 			$(link).css('background-color','red');
+			$(link).parent().css('z-index', 10);
+			$(link).parent().css('position', 'relative');
+
 			audiochannels[index]['channel'].play();
 			$('#state'+index).val('play');
 		} 
