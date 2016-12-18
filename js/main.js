@@ -7,6 +7,7 @@ var showTextCount=0;
 var audiochannels = new Array();
 
 var _videoPlaying = 0;
+var speakingOpen = false;
 
 var tracksPlaying = 0;
 var filterBusy = -1;
@@ -21,7 +22,7 @@ var writeCount = 0;
 var enableFilters = false;
 
 var context;
- 
+
 var current_search_container = 1;
 
 var MOBILE_QUERY = 'only screen and (min-width: 320px) and (max-width: 479px)';
@@ -115,7 +116,12 @@ $(document).ready(function() {
     
     });  
 
-    console.log('ismobile', isMobile)
+    $('.speaking').click(function(e) {
+    	speakingOpen = !speakingOpen;
+    	$(e.target).css('background-color', speakingOpen ? 'red' : '#AAA')
+    	$('.speakingbox').toggle()
+    })
+
     if(isMobile) {
 
     	var textContainers = document.querySelectorAll('.text-container')
@@ -602,14 +608,12 @@ $(document).ready(function() {
 		var sourceFileLookupIndex = a;
 
 		// for dunno and youknow randomly play one of the tracks
-		/*
 		if(a===46) {
 			sourceFileLookupIndex = sourceFileLookupIndex + Math.round(Math.random() * 70)
 		}
 		else if (a===116) {
 			sourceFileLookupIndex = sourceFileLookupIndex + Math.round(Math.random() * 99)
 		}
-		*/
 		audiochannels[a]['channel'].src = sourceFiles[sourceFileLookupIndex];
 		audiochannels[a]['channel'].load();
 

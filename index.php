@@ -54,6 +54,7 @@
     	</div>
 		<div id="dot-box">
 			<a class='hp' href="#" onclick="$('#download-list').toggle();return false;"><span id="headphones">for headphones</span></a>
+			<a class='speaking'><div class="grey_button"></div></a>
 			<ul class="tracks">
 			
 			
@@ -95,6 +96,7 @@ while($row = mysql_fetch_array($results))
 						<?php /* echo $body */?>
 					</div>
 					<ul class="buttons">
+
 <?php
 
 			$segment_sql="SELECT * FROM segment where item_id=".$item_id;
@@ -167,9 +169,11 @@ while($row = mysql_fetch_array($results))
 	<div id="control-dots" class="side_btns">
 		
 		<a href="http://itunes.apple.com/us/app/the-use/id407969043?mt" target="_blank"><span>app</span><div class="grey_button"></div></a>
+		<!--
 		<a  href="#" onclick="toggleFilters(this)" ><span>filters</span><div class="grey_button"></div></a>
 		<a  id=""><span>&nbsp;</span><div class="grey_button"></div></a>
 		<a  href="#" onclick="setupVoice(this)" ><span>voice</span><div class="grey_button"></div></a>
+		-->
 	</div>
 	<video id="vid1"></video>
 	<video id="vid2"></video>
@@ -219,6 +223,8 @@ while($row = mysql_fetch_array($results))
  	 }
 	?>
 	</ul>
+
+	<iframe class="speakingbox" src="http://speakingisdifficult.bingo"></iframe>
 	
 	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>

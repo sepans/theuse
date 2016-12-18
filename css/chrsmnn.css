@@ -102,18 +102,36 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 #filter-controller .grey_button {position: absolute; top: 38px; left: 38px; cursor: default; background-color: #BBB; }
 
+.speaking {
+	display: block;
+	margin: 5px 0 7px 337px;
+}
+
+.speakingbox {
+	width: 300px;
+	height: 400px;
+	position: absolute;
+	top: 39px;
+    left: 645px;
+	display: none;
+	border: 0;
+	background-color: #FFF;
+}
+
 /* only show one btn for youknow and dunno */
 
-#dot-box ul.tracks li#item-3322 .buttons .segment { /*display: none;*/margin: 0; margin-left: -10px;}
-#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { /*display: inline-block;*/  margin-left: 0px;}
-
-#dot-box ul.tracks li#item-3323 .buttons .segment { /*display: none;*/margin: 0; margin-left: -10px;}
-#dot-box ul.tracks li#item-3323 .buttons .segment:first-child { /*display: inline-block;*/  margin-left: 0px;}
 
 @media not screen and (min-width: 320px) and (max-width: 479px) {
 
 	#dot-box ul.tracks a:hover .title {display: none;}
 	#dot-box ul.tracks a:hover .words {display: block;}
+
+	#dot-box ul.tracks li#item-3322 .buttons .segment { /*display: none;*/margin: 0; margin-left: -10px;}
+	#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { /*display: inline-block;*/  margin-left: 0px;}
+
+	#dot-box ul.tracks li#item-3323 .buttons .segment { /*display: none;*/margin: 0; margin-left: -10px;}
+	#dot-box ul.tracks li#item-3323 .buttons .segment:first-child { /*display: inline-block;*/  margin-left: 0px;}
+
 
 }
 
@@ -215,7 +233,22 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		display: none;
 	}
 
+	#dot-box ul.tracks li#item-3322 .buttons .segment { display: none;}
+	#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { display: inline-block;}
 
+	#dot-box ul.tracks li#item-3323 .buttons .segment { display: none;}
+	#dot-box ul.tracks li#item-3323 .buttons .segment:first-child { display: inline-block;}
+
+
+	.speaking {
+		margin: 7px 0;
+    	width: 64px;
+	}
+
+	.speakingbox {
+		left: 40px;
+		top: 30px;
+	}
 }
 
 @media only screen and (min-width: 320px) and (max-width: 479px) { }
