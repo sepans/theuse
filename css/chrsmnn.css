@@ -104,17 +104,19 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 .speaking {
 	display: block;
-	margin: 5px 0 7px 337px;
+	/*margin: 5px 0 7px 337px;*/
+	margin: 10px -2px;
+
 }
 
 .speakingbox {
-	width: 300px;
+	width: 280px;
 	height: 400px;
 	position: absolute;
 	top: 39px;
     left: 645px;
 	display: none;
-	border: 0;
+	border: 1px solid rgba(0, 0, 0, 0.9);
 	background-color: #FFF;
 }
 

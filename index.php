@@ -54,8 +54,15 @@
     	</div>
 		<div id="dot-box">
 			<a class='hp' href="#" onclick="$('#download-list').toggle();return false;"><span id="headphones">for headphones</span></a>
-			<a class='speaking'><div class="grey_button"></div></a>
 			<ul class="tracks">
+				<!--
+  				<li>
+  					<h3><a><span>speaking is difficult</span></a></h3>
+  					<a class='speaking'><div class="grey_button"></div></a>
+
+  				</li>
+  			-->
+
 			
 			
 <?php 
@@ -88,7 +95,7 @@ while($row = mysql_fetch_array($results))
   
 
   ?>
-  
+
 				<li class="item" id="item-<?php echo $item_id; ?>">
 					<h3><a href="#" class="title-btn" onclick="loadText('<?php echo $item_id; ?>')"><span class="title" id="title<?php echo $item_id; ?>"><?php echo $display_title; ?></span><span class="words"><?php echo $words; ?> words</span></a></h3>
 					<div id="<?php echo $title; ?>Body" style="display: none" class="item_body">
@@ -169,6 +176,9 @@ while($row = mysql_fetch_array($results))
 	<div id="control-dots" class="side_btns">
 		
 		<a href="http://itunes.apple.com/us/app/the-use/id407969043?mt" target="_blank"><span>app</span><div class="grey_button"></div></a>
+		<a href="https://www.amazon.com/Use-book-set-15-postcards/dp/1934399256/ref=sr_1_1?ie=UTF8&qid=1481923441&sr=8-1&keywords=chris+mann%2C+the+use" target="_blank"><span>book</span><div class="grey_button"></div></a>
+		<a href="http://thetechnologyofquestions.cc" target="_blank"><span>thetechnologyofquestions.cc</span><div class="grey_button"></div></a>
+		<a href="http://speakingisdifficult.bingo" target="_blank"><span>speakingisdifficult.bingo</span><div class="grey_button"></div></a>
 		<!--
 		<a  href="#" onclick="toggleFilters(this)" ><span>filters</span><div class="grey_button"></div></a>
 		<a  id=""><span>&nbsp;</span><div class="grey_button"></div></a>

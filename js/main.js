@@ -90,7 +90,7 @@ $(document).ready(function() {
 
     var screen_saver_2 = ScreenSaver(window,$,sentences,{start_after_time: 40, overlay: true, dice: $('#dice2')});     
     
-    var $btn1 = $('#rew_btn_1');
+    var $btn1 = $($('#item-96 li .rew_btn')[1]);
     
     $btn1.parents('li.segment').append('<div class="cantquite-title">cant quite tell</div>');
 
@@ -103,7 +103,7 @@ $(document).ready(function() {
     
     });  
     
-    var $btn2 = $('#rew_btn_2');
+    var $btn2 = $($('#item-96 li .rew_btn')[2]);
     
     $btn2.parents('li.segment').append('<div class="thingsidlike-title">things i\'d like to have said</div>');
     
