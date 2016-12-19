@@ -122,6 +122,10 @@ $(document).ready(function() {
     	$('.speakingbox').toggle()
     })
 
+    $('.control-menu-btn').click(function() {
+    	$('#control-dots .menu').toggle()
+    })
+
     if(isMobile) {
 
     	var textContainers = document.querySelectorAll('.text-container')
@@ -220,7 +224,6 @@ $(document).ready(function() {
     var vid6Zoom = false;
    
     $('video').click(function() {
-       console.log(this.id);
        if(this.id=='vid6') {
            // var scale = $(this).css('transform') || 'scale(1)';
             //console.log(scale, scale.indexOf('scale(2)'));
@@ -237,12 +240,25 @@ $(document).ready(function() {
             
        } 	   
        else {
+       	if(isMobile) {
+       		//on mobile clicking on the video closes vid
+       		var vidIndex =  parseInt(this.id.replace('vid', '')) -1
+       		
+       		var vidBtn = $($('#video-dots .grey_button')[vidIndex])
+       		vidBtn.css('background-color', 'green')
+
+       		this.pause()
+       		this.style.display = 'none'
+       	}
+       	else {
+	        if(this.width == 427) 
+	            this.width= 840;
+	        else
+	            this.width = 427;
+	        }
+
+       	}
        
-        if(this.width == 427) 
-            this.width= 840;
-        else
-            this.width = 427;
-        }
     });
 	   
 

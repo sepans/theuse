@@ -174,11 +174,13 @@ while($row = mysql_fetch_array($results))
 
 
 	<div id="control-dots" class="side_btns">
-		
-		<a href="http://itunes.apple.com/us/app/the-use/id407969043?mt" target="_blank"><span>app</span><div class="grey_button"></div></a>
-		<a href="https://www.amazon.com/Use-book-set-15-postcards/dp/1934399256/ref=sr_1_1?ie=UTF8&qid=1481923441&sr=8-1&keywords=chris+mann%2C+the+use" target="_blank"><span>book</span><div class="grey_button"></div></a>
-		<a href="http://thetechnologyofquestions.cc" target="_blank"><span>thetechnologyofquestions.cc</span><div class="grey_button"></div></a>
-		<a href="http://speakingisdifficult.bingo" target="_blank"><span>speakingisdifficult.bingo</span><div class="grey_button"></div></a>
+		<a href="#" class="control-menu-btn"><div class="grey_button"></div></a>
+		<div class="menu">
+			<a href="http://itunes.apple.com/us/app/the-use/id407969043?mt" target="_blank"><span>app</span><div class="grey_button"></div></a>
+			<a href="https://www.amazon.com/Use-book-set-15-postcards/dp/1934399256/ref=sr_1_1?ie=UTF8&qid=1481923441&sr=8-1&keywords=chris+mann%2C+the+use" target="_blank"><span>book</span><div class="grey_button"></div></a>
+			<a href="http://thetechnologyofquestions.cc" target="_blank"><span>thetechnologyofquestions.cc</span><div class="grey_button"></div></a>
+			<a href="http://speakingisdifficult.bingo" target="_blank"><span>speakingisdifficult.bingo</span><div class="grey_button"></div></a>
+		</div>
 		<!--
 		<a  href="#" onclick="toggleFilters(this)" ><span>filters</span><div class="grey_button"></div></a>
 		<a  id=""><span>&nbsp;</span><div class="grey_button"></div></a>
@@ -236,18 +238,18 @@ while($row = mysql_fetch_array($results))
 
 	<iframe class="speakingbox" src="http://speakingisdifficult.bingo"></iframe>
 	
-	<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
-	<script type="text/javascript" src="js/jquery.window.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="lib/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.window.min.js"></script>
 
 	<!-- needed? -->
-    <script type="text/javascript" src="js/dsp.js"></script>
+    <script type="text/javascript" src="lib/dsp.js"></script>
 
 
-	<script type="text/javascript" src="js/jquery.jsPlumb-1.3.16-all.min.js"></script>
-	<script type="text/javascript" src="js/jquery.highlight-3.js"></script>
+	<script type="text/javascript" src="lib/jquery.jsPlumb-1.3.16-all.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.highlight-3.js"></script>
 	
-	<script type="text/javascript" src="js/jquery.ba-dotimeout.min.js"></script>
+	<script type="text/javascript" src="lib/jquery.ba-dotimeout.min.js"></script>
 
 
 	<script type="text/javascript" src="js/sents.js"></script>
