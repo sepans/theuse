@@ -18,7 +18,10 @@ var sampleRate = 44100;
   
 var response = [];
 var writeCount = 0;
-  
+
+var endpointCount = 0;
+var highlightedWords = [];
+
 var enableFilters = false;
 
 var context;
@@ -284,6 +287,12 @@ $(document).ready(function() {
   	$('.text-container').mouseup(function() {
        selectText(this); 
   	});	
+
+
+  	$('.text-container').bind('touchend' ,function() {
+       selectText(this); 
+  	});	
+
           
     if(presets!='none') {
         applyPresets(presets);
@@ -313,33 +322,15 @@ $(document).ready(function() {
 		        console.log('source '+sourceText);
 		        console.log('target '+targetText);
 		        
-		        $.getJSON("search_all.php?keyword="+sourceText+"&one=one", function(data1) {
-		            console.log(data1);
-                $.getJSON("search_all.php?keyword="+targetText+"&one=one", function(data2) {
-  		            console.log(data2);
-  		            
-  		            $.ajax({
-                        url: 'markov.php?order=5&length='+500+'&begining='+sourceText+'&content='+data1[0].sentence.substring(0,2000).trim()+' '+data2[0].sentence.substring(0,2000).trim(),
-                        context: document.body
-                        }).done(function(data) { 
-                        
-                         console.log(info.source);
-                         console.log(info.source.parents('.synth').length>0);
 
-                         generateMarkov(data,100,100,sourceText,targetText,info);
-                   });								
-                                    
-
-                
-                });
-		        });
-
+		        queryMarkovText(sourceText, targetText, info)
 		        
 		        //console.log(sourceText);
+		    });
 		        
 		        
 		      
-		  });
+		  
 
   	});  //jsplumb	
       
@@ -348,6 +339,25 @@ $(document).ready(function() {
 		
 
 	});  // ready
+
+
+	function queryMarkovText(sourceText, targetText, info) {
+		$.getJSON("search_all.php?keyword="+sourceText+"&one=one", function(data1) {
+            $.getJSON("search_all.php?keyword="+targetText+"&one=one", function(data2) {
+  		        $.ajax({
+                    url: 'markov.php?order=5&length='+500+'&begining='+sourceText+'&content='+data1[0].sentence.substring(0,2000).trim()+' '+data2[0].sentence.substring(0,2000).trim(),
+                    context: document.body
+                    }).done(function(data) { 
+                    
+	                    generateMarkov(data,100,100,sourceText,targetText,info);
+                	});								
+                                    
+
+                
+            });
+	    });
+		
+	}
 
 	/*function rewind(index,e,element) {
 		var posx = e.pageX - $(element)[0].offsetLeft-84;
@@ -364,7 +374,7 @@ $(document).ready(function() {
             //var selection =  getSelectionHtml();//t = (document.all) ? document.selection.createRange().text : document.getSelection();
             
             var selection = t = (document.all) ? document.selection.createRange().text : document.getSelection();
-            console.log('selecttext', selection, selection.focusOffset-selection.anchorOffset>2)
+            console.log('selecttext', selection, selection.focusOffset-selection.anchorOffset)
             if(selection.focusOffset-selection.anchorOffset>2) {
                 
                 var searchResult = $(element).find('ul').length>0;
@@ -372,10 +382,28 @@ $(document).ready(function() {
                 var findElement = $(element).find('ul').length>0 ? 'div' : 'p';
                 
               //  if(searchResult) {
+
                    // $(element).find('p').highlight(' '+selection);
+                    highlightedWords.push(selection.toString())
+
                     $(element).find(findElement).highlight(' '+selection);
+
                     jsPlumb.addEndpoint($(element).find(findElement+' .highlight'),BLUE_ENDPOINT_OPTS);
-                
+                	endpointCount++;
+
+                	if(isMobile && endpointCount%2===0) {
+                		console.log('CONNECT')
+
+                		var targetText = highlightedWords[endpointCount-1]
+                		var sourceText = highlightedWords[endpointCount-2]
+                		console.log('source '+sourceText);
+		        		console.log('target '+targetText);
+		        
+				        							
+		                                    
+		        		queryMarkovText(sourceText, targetText, null)
+		               
+                	}
               //  }
               //  else {
                 //    $(element).find('p').highlight(' '+selection);
@@ -985,7 +1013,7 @@ $(document).ready(function() {
     
     	 var textCont = data;// "<div class='red_text_cont'>..."+data+"...</div>"; 
     	 
-    	 var red = info.source.parents('.synth').length>0;
+    	 var red = info && info.source.parents('.synth').length>0;
     	 
     	 textCont = red ? textCont.substring(0,textCont.lastIndexOf('.')+1) : textCont.substring(0,textCont.indexOf('.')+1);
     	 
@@ -1017,38 +1045,39 @@ $(document).ready(function() {
 	
     var synthCount = 0;	
 	
-		function openWindow(x,y,z, width, height , content ,  title, containerClassName,resizable) {
-		    
-		    $('#container').append('<div class="'+containerClassName+'" id="synth'+synthCount+'"><div class="handle"></div><span></span></div>');
-		    showText($('#synth'+synthCount+' span'),content.trim(),0,100,0);
-		    $('#synth'+synthCount).css('top',100+Math.random()*400);
-		    $('#synth'+synthCount).css('left',400+Math.random()*250);
-		    $('#synth'+synthCount).draggable({ handle: ".handle" });
-		    synthCount++;
-		    
-		    $('.synth').mouseup(function() {
-          
-                console.log('synth');
-                //var selection =  getSelectionHtml();//t = (document.all) ? document.selection.createRange().text : document.getSelection();
-                var selection = t = (document.all) ? document.selection.createRange().text : document.getSelection();
-                if(selection.focusOffset-selection.anchorOffset>2) {
-                    //console.log($('#second-text-box .search-input')[0].value);
-                    
-                    /*
-                    $('#second-text-box .search-input')[0].value=selection;
-                    $.getJSON("search_all.php?keyword="+selection+"", searchCallback(2));
-                    
-                    */
+	function openWindow(x,y,z, width, height , content ,  title, containerClassName,resizable) {
+	    var xRand = isMobile ? 10 + Math.random() * 200 : 400 + Math.random() * 250 
+	    var yRand = isMobile ? 10 + Math.random() * 400 : 100 + Math.random() * 400
+	    $('#container').append('<div class="'+containerClassName+'" id="synth'+synthCount+'"><div class="handle"></div><span></span></div>');
+	    showText($('#synth'+synthCount+' span'),content.trim(),0,100,0);
+	    $('#synth'+synthCount).css('top', yRand);
+	    $('#synth'+synthCount).css('left', xRand);
+	    $('#synth'+synthCount).draggable({ handle: ".handle" });
+	    synthCount++;
+	    
+	    $('.synth').mouseup(function() {
+      
+            console.log('synth');
+            //var selection =  getSelectionHtml();//t = (document.all) ? document.selection.createRange().text : document.getSelection();
+            var selection = t = (document.all) ? document.selection.createRange().text : document.getSelection();
+            if(selection.focusOffset-selection.anchorOffset>2) {
+                //console.log($('#second-text-box .search-input')[0].value);
+                
+                /*
+                $('#second-text-box .search-input')[0].value=selection;
+                $.getJSON("search_all.php?keyword="+selection+"", searchCallback(2));
+                
+                */
 
-                    $(this).highlight(' '+selection);
-                    jsPlumb.addEndpoint($(this).find('.highlight'),RED_ENDPOINT_OPTS);
-                    
-                    $('#hint-box').fadeOut();
+                $(this).highlight(' '+selection);
+                jsPlumb.addEndpoint($(this).find('.highlight'),RED_ENDPOINT_OPTS);
+                
+                $('#hint-box').fadeOut();
 
-                   
+               
 
-          	 }
-          });	
+      	 }
+      });	
           
 
 

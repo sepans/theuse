@@ -267,6 +267,15 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		z-index: 1;
 
 	}
+
+	.highlight {
+		border-bottom: 1px solid blue;
+	}
+	.synth {
+		z-index: 200;
+	}
+
+	
 }
 
 @media only screen and (min-width: 480px) and (max-width: 767px){ 
