@@ -83,6 +83,7 @@ if (Browser.Mozilla) {
 */
 
 
+
 $(document).ready(function() {
 
 
@@ -90,41 +91,23 @@ $(document).ready(function() {
 
     var screen_saver_2 = ScreenSaver(window,$,sentences,{start_after_time: 40, overlay: true, dice: $('#dice2')});     
     
-    var $btn1 = $($('#item-96 li .rew_btn')[1]);
+    addHoverToDot($($('#item-96 li .rew_btn')[1]), 'cantquite-title', 'cant quite tell') 
+    addHoverToDot($($('#item-96 li .rew_btn')[2]), 'thingsidlike-title', 'things i\'d like to have said') 
     
-    $btn1.parents('li.segment').append('<div class="cantquite-title">cant quite tell</div>');
-
-    $btn1.mouseover(function(e) {
-        $('.cantquite-title').css('opacity',1);
-    
-    });  
-    $btn1.mouseout(function(e) {
-        $('.cantquite-title').css('opacity',0);
-    
-    });  
-    
-    var $btn2 = $($('#item-96 li .rew_btn')[2]);
-    
-    $btn2.parents('li.segment').append('<div class="thingsidlike-title">things i\'d like to have said</div>');
-    
-    $btn2.mouseover(function(e) {
-        $('.thingsidlike-title').css('opacity',1);
-    
-    });  
-    $btn2.mouseout(function(e) {
-        $('.thingsidlike-title').css('opacity',0);
-    
-    });  
+    addHoverToDot($($('#item-95 li .rew_btn')[0]), 'speaking-title', 'speaking is difficult') 
+    addHoverToDot($($('#item-95 li .rew_btn')[1]), 'goon-title', 'go on, make me') 
+    addHoverToDot($($('#item-95 li .rew_btn')[2]), 'almost-title', 'this, almost') 
 
     $('.speaking').click(function(e) {
     	speakingOpen = !speakingOpen;
     	$(e.target).css('background-color', speakingOpen ? 'red' : '#AAA')
     	$('.speakingbox').toggle()
     })
-
+    
     $('.control-menu-btn').click(function() {
     	$('#control-dots .menu').toggle()
     })
+	
 
     if(isMobile) {
 
@@ -159,6 +142,11 @@ $(document).ready(function() {
 		//})
 
     }
+
+    $('#mute_video').click(function() {
+    	$('#vidsilent').toggle()
+    	document.getElementById('vidsilent').play()
+    })
         
 
 
@@ -1099,6 +1087,20 @@ var showText = function(target, message, index, interval,input) {
     setTimeout(function () { showText(target, message, index, interval,input); }, interval+randomNumber);
   }
 } 
+
+function addHoverToDot($btn, className, title) {
+
+    $btn.parents('li.segment').append('<div class="item-hover '+className+'">'+title+'</div>');
+    $btn.mouseover(function(e) {
+        $('.'+className).css('opacity',1);
+    });  
+    $btn.mouseout(function(e) {
+        $('.'+className).css('opacity',0);
+    
+    });  
+
+}
+
 
 var setupVoice = function(btn) {
     $(btn).find('.grey_button').css('background-color', 'red');

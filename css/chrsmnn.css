@@ -5,7 +5,7 @@ h1,h2 {font-size: 12px; font-weight: normal; display: inline; padding: 0 10px;}
 a, a:visited {color: #000; text-decoration: none;}
 ul {list-style: none;}
 
-.cantquite-title, .thingsidlike-title {
+.item-hover {
     position: absolute;
     opacity: 0;
     /*
@@ -76,7 +76,9 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 #control-dots {position: absolute; right: 0px; top: 35px;}
 #control-dots a {margin-bottom: 20px; display: block;}
-#control-dots .menu { display: none;}
+#control-dots .menu { display: none; position: absolute; top: 30px;}
+
+#control-dots .control-menu-btn:hover .menu { display: block; }
 
 .side_btns a span { opacity: 0; margin-left: -160px; float: right; padding-top: 10px;  }
 .side_btns a:hover span { opacity: 1; }
@@ -119,6 +121,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	display: none;
 	border: 1px solid rgba(0, 0, 0, 0.9);
 	background-color: #FFF;
+}
+
+#vidsilent {
+	
 }
 
 /* only show one btn for youknow and dunno */

@@ -174,7 +174,9 @@ while($row = mysql_fetch_array($results))
 
 
 	<div id="control-dots" class="side_btns">
-		<a href="#" class="control-menu-btn"><div class="grey_button"></div></a>
+		<a href="#" class="control-menu-btn">
+			<div class="grey_button"></div>
+		</a>
 		<div class="menu">
 			<a href="http://itunes.apple.com/us/app/the-use/id407969043?mt" target="_blank"><span>app</span><div class="grey_button"></div></a>
 			<a href="https://www.amazon.com/Use-book-set-15-postcards/dp/1934399256/ref=sr_1_1?ie=UTF8&qid=1481923441&sr=8-1&keywords=chris+mann%2C+the+use" target="_blank"><span>book</span><div class="grey_button"></div></a>
@@ -187,6 +189,7 @@ while($row = mysql_fetch_array($results))
 		<a  href="#" onclick="setupVoice(this)" ><span>voice</span><div class="grey_button"></div></a>
 		-->
 	</div>
+	<video id="vidsilent" src="/video/7.webm"></video>
 	<video id="vid1"></video>
 	<video id="vid2"></video>
 	<video id="vid3"></video>
