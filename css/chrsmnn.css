@@ -54,7 +54,7 @@ ul {list-style: none;}
 
 #youarehere { width: 200px; height: 200px; position: absolute; top: 150px; left: 240px; background-image: url('../../images/youarehere.gif'); display:none;}
 
-#mute_video { margin-left: 445px; margin-top: -15px;}
+#mute_video { margin-left: 195px; margin-top: 15px;}
 #headphones {margin-left: 130px;padding-bottom: 2em;display: inline-block;width: 200px;text-align: right;}
 #hp {} 
 
