@@ -145,7 +145,11 @@ $(document).ready(function() {
 
     $('#mute_video').click(function() {
     	$('#vidsilent').toggle()
-    	document.getElementById('vidsilent').play()
+    	var silentvid = document.getElementById('vidsilent')
+    	silentvid.play()
+    	silentvid.addEventListener('ended', function() {
+    		this.style.display = 'none';
+    	})
     })
         
 

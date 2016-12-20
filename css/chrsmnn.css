@@ -80,7 +80,7 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 #control-dots .control-menu-btn:hover .menu { display: block; }
 
-.side_btns a span { opacity: 0; margin-left: -160px; float: right; padding-top: 10px;  }
+.side_btns a span { opacity: 0; margin-left: -160px; float: right; padding-top: 10px; pointer-events: none; }
 .side_btns a:hover span { opacity: 1; }
 .side_btns .grey_button { cursor: pointer; display: block;}
 
@@ -124,7 +124,7 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 }
 
 #vidsilent {
-	
+
 }
 
 /* only show one btn for youknow and dunno */
@@ -164,7 +164,7 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	}
 	#dot-box ul.tracks {
 		padding: 0 20px;
-		display: table-caption;
+		display: block;
 		height: 90%;
 		-moz-column-count: 8;
 	    -moz-column-gap: 15px;
@@ -232,7 +232,7 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 
 	#video-dots {
 		right: 20px;
-		bottom: -10px !important;
+		bottom: 0px !important;
 	}
 
 	.grey_button {

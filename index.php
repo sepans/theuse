@@ -239,7 +239,7 @@ while($row = mysql_fetch_array($results))
 	?>
 	</ul>
 
-	<iframe class="speakingbox" src="http://speakingisdifficult.bingo"></iframe>
+	<!--<iframe class="speakingbox" src="http://speakingisdifficult.bingo"></iframe>-->
 	
 	<script type="text/javascript" src="lib/jquery-1.7.min.js"></script>
 	<script type="text/javascript" src="lib/jquery-ui-1.8.18.custom.min.js"></script>
