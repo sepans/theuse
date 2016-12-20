@@ -147,8 +147,11 @@ $(document).ready(function() {
     	$('#vidsilent').toggle()
     	var silentvid = document.getElementById('vidsilent')
     	silentvid.play()
-    	silentvid.addEventListener('ended', function() {
-    		this.style.display = 'none';
+    	silentvid.addEventListener("timeupdate", function(){
+    		if(this.currentTime >= 2) {
+
+    			this.style.display = 'none';
+    		}
     	})
     })
         
