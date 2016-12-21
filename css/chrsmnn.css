@@ -275,6 +275,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		z-index: 200;
 	}
 
+	#second-text-box .text-dragable-cnt, #third-text-box .text-dragable-cnt {
+		display: none;
+	}
+
 	
 }
 
