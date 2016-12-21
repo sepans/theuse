@@ -404,14 +404,7 @@ $(document).ready(function() {
 		        		queryMarkovText(sourceText, targetText, null)
 		               
                 	}
-              //  }
-              //  else {
-                //    $(element).find('p').highlight(' '+selection);
-               //     jsPlumb.addEndpoint($(element).find('p .highlight'),BLUE_ENDPOINT_OPTS);
-                
-              //  }
-                
-                //jsPlumb.draggable($('#text-container p'));
+
                 $('#hint-box').fadeOut();
 
                 
@@ -980,8 +973,6 @@ $(document).ready(function() {
             text_container.css('top',0);
             
 
-            console.log(text_container.find('p .single-word'));
-            console.log(jsPlumb);
             
             if(showTextCount==0) {
                 showText($('#hint-box'), 'doubleclick any two words and drag one to the other', 0, 50,0);
@@ -1024,22 +1015,7 @@ $(document).ready(function() {
     	 
 									
           var blueGrid = openWindow(x,y,2000, 200, 200 ,textCont ,  '',synth_class,true);	
-         /*
-          var height = blueGrid.window.getContainer().find('.red_text_cont').height();
-          blueGrid.window.resize(WINDOW_WIDTH,height+40);	
-         // '.window_frame'
-          $(blueGrid.window.getContainer()).find('.window_frame').height(height+30);
-          
-          $(blueGrid.window.getContainer()).find('.window_frame').highlight(sourceWord);
-          $(blueGrid.window.getContainer()).find('.window_frame').highlight(targetWord);
-          
-          jsPlumb.addEndpoint($("#"+blueGrid.window.getContainer().attr('id')+" .highlight"), GREEN_ENDPOINT_OPTS);
-
-          jsPlumb.draggable(blueGrid.window.getContainer());
-
-
-        //  blueTexts[info.source]=blueGrid;
-        */
+       
 	
 	}
 	
