@@ -548,9 +548,15 @@ $(document).ready(function() {
 		else {
     		$(video).show();
     		$(button).find('.grey_button').css('background-color','red');
-    		if(!video.src)
+    		if(!video.src) {
+    			console.log(Browser, Browser.Safari)
+    			if(Browser.Safari) {
+    				//filename = filename.replace('webm', 'mp4')
+    				console.log(filename)
+    			}
     			video.src= '/video/'+filename;
-    		
+    			console.log(video.src)
+    		}
     		video.play();
     		_videoPlaying +=1;
     		$(video).on('ended', function(){
