@@ -204,9 +204,9 @@ while($row = mysql_fetch_array($results))
 	
 	
 	<div id="video-dots" class="side_btns">
-		<a  href="#" onclick="playvideo('vid1','noitsatest.ogg',this); return false;" id=""><span>no thats a test</span><div class="grey_button"></div></a>
+		<a  href="#" onclick="playvideo('vid1','noitsatest.webm',this); return false;" id=""><span>no thats a test</span><div class="grey_button"></div></a>
 		<a  href="#" onclick="playvideo('vid2','howwouldyouknow.webm',this); return false;" id=""><span>how would you know it was on?</span><div class="grey_button"></div></a>
-		<a  href="#" onclick="playvideo('vid3','theartofthediff.ogg',this); return false;" id=""><span>the art of the diff</span><div class="grey_button"></div></a>
+		<a  href="#" onclick="playvideo('vid3','theartofthediff.webm',this); return false;" id=""><span>the art of the diff</span><div class="grey_button"></div></a>
 		<a  href="#" onclick="playvideo('vid4','itsatrick.webm',this); return false;" id=""><span>its a trick, right?</span><div class="grey_button"></div></a>
 		<a  href="#" onclick="playvideo('vid5','the60mbvid1.webm',this); return false;" id=""><span>maybe if you hit it hard</span><div class="grey_button"></div></a>
 	
