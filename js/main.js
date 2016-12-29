@@ -718,7 +718,7 @@ $(document).ready(function() {
 	    // for making an exception for theintro.
 	    if(itemId===96 && itemSegmentCount===0) {
 	        $('#vid6-container').toggle();
-	        playvideo('vid6','theintro.webm',$('#grey_btn_0').parent()); 
+	        playvideo('vid6','theintro.webm',$(link).parent()); 
 	    
 	        return;
 	    }
