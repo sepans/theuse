@@ -180,10 +180,8 @@ $(document).ready(function() {
 	  	$(this).text('for headphones');
 	});
 	  
-	if (Browser.Chrome ) {
-			context = new webkitAudioContext();
+	context = new AudioContext();
 
-	}
 	$('.rew_btn').each(function (index,element) {
 
 		var elementId = $(element).attr('id');
@@ -435,16 +433,8 @@ $(document).ready(function() {
 
 
     function loadedMetadata() {
-		//console.log('meta loaded');
-		//console.log(this);
 
-		//console.log(this.volume);  
-
-    	this.volume = 0;
-		//console.log(this.volume);  
-      // Setup a2 to be identical to a1, and play through there.  
-    //  a2.mozSetup(a1.mozChannels, a1.mozSampleRate);  
-    //  console.log(a1.mozChannels+" "+ a1.mozSampleRate);	
+    	this.play()
 
     }  
       
@@ -453,90 +443,7 @@ $(document).ready(function() {
 	var filterInterval = 4;
 	var filterPeriod = 200;
 	var filterTimeReset = true;  
-	
-	function audioWrittenLeft(event) {
-        signal = event.frameBuffer;
-		for (i = 0; i < signal.length/2; i++) {
 
-			signal[i * 2+1] = 0;
-  		}
-		outputLeft.mozWriteAudio(signal);
-//		console.log('.');
-	
-	}    
-
-	function audioWrittenRight(event) {
-        signal = event.frameBuffer;
-		for (i = 0; i < signal.length/2; i++) {
-
-			signal[i * 2] = 0;
-  		}
-		outputRight.mozWriteAudio(signal);
-//		console.log(',');
-	
-	}    
-
-	function audioWritten(event) {
-
-        signal = event.frameBuffer;
-
-
-
-		var timeSeconds=Math.floor(event.time);
-		var timeMSeconds=Math.floor((event.time-timeSeconds)*1000);
-		if(timeSeconds%filterInterval==0) {
-		   if(timeMSeconds<filterPeriod) {
-				
-				signal = biquad.processStereo(signal);
-				//console.log('filter');
-				filterTimeReset=false;
-				
-				 for (i = 0; i < signal.length/2; i++) {
-    
-   					 signal[i * 2] = 0;
-    //signal[i * 2 + 1] = sample * (0.5 + balance);
-  				}
-		   }
-		   else if(filterTimeReset==false) {
-	
-			filterTimeReset=true;
-			filterInterval=Math.round(Math.random()*5)+1;
-			filterPeriod=(Math.round(Math.random()*50)+5)*10;
-			randomizeFilter();
-			//console.log('filter settings '+filterInterval+' '+filterPeriod);
-	
-		   }
-		}
-		output.mozWriteAudio(signal);
-		writeCount++;
-      }
-
-	var filterSettings =   [{'type': DSP.HPF, 'f0': 8822, 'bw': 1.177, 'q': 86722, 'dbg': -14},
-				{'type': DSP.BPF_CONSTANT_SKIRT, 'f0': 148, 'q': 16.375, 'bw': 0.945 , 'dbg': 9},
-				{'type': DSP.NOTCH, 'f0': 9997, 'q': 8.935, 'bw': 7.92 , 'dbg': 21},
-				{'type': DSP.BPF_CONSTANT_PEAK, 'f0': 9012, 'q': 37.476, 'bw': 0.464 , 'dbg': 29},
-				{'type': DSP.NOTCH, 'f0': 6037, 'q': 11.246, 'bw': 9.845 , 'dbg': -9}
-
-
-
-				];
-
-	function randomizeFilter() {
-		var random = Math.floor(Math.random()*filterSettings.length);
-		//console.log("filter index "+random+' '+filterSettings[random]['type']);
-
-		biquad.setFilterType(filterSettings[random]['type']);
-		biquad.setF0(filterSettings[random]['f0']);
-		biquad.setBW(filterSettings[random]['bw']);
-		//biquad.setS();
-		biquad.setQ(filterSettings[random]['q']);
-		biquad.setDbGain(filterSettings[random]['dbg']);	
-	}
-	
-	function toggleFilters(button) {
-		$(button).find('.grey_button').css('background-color', enableFilters ? 'green' : 'red');
-		enableFilters = !enableFilters;	
-	}
 	
 	function playvideo(vid,filename,button) {
 		var video = document.getElementById(vid);
@@ -595,17 +502,9 @@ $(document).ready(function() {
                 $('#grey_btn_'+a).css('background-color','#AAA');
             });
             
-
+		/*
         if (Browser.Mozilla) {
-           /* if(switchChannels) {   // the effect for corrections where with each pause the channel switches. starting with left
-            
-				audiochannels[a]['channel'].addEventListener('MozAudioAvailable', audioWrittenLeft, false);
-	
-				audiochannels[a]['channel'].addEventListener('loadedmetadata', loadedMetadata, false); 
-				
-				audiochannels[a]['panning']='left';
-            
-            }*/
+           
 			if(filterBusy==-1 && enableFilters && !nofilter) {
 	
 
@@ -615,7 +514,7 @@ $(document).ready(function() {
 				
 				filterBusy= a;
 				
-			} else if(leftFilterBusy == -1 /* && !switchChannels*/ && tracksPlaying>0 && !nofilter) {
+			} else if(leftFilterBusy == -1  && tracksPlaying>0 && !nofilter) {
 
 
 
@@ -626,7 +525,7 @@ $(document).ready(function() {
 				leftFilterBusy = a;	
 			
 			
-			} else if(rightFilterBusy == -1 /* && !switchChannels*/ && tracksPlaying>1 && !nofilter) {
+			} else if(rightFilterBusy == -1  && tracksPlaying>1 && !nofilter) {
 			
 
 				audiochannels[a]['channel'].addEventListener('MozAudioAvailable', audioWrittenRight, false);
@@ -640,6 +539,9 @@ $(document).ready(function() {
 			    console.log('no effect');
 			}
 		}
+		*/
+
+		audiochannels[a]['channel'].addEventListener('loadedmetadata', loadedMetadata, false);  
 						
 		audiochannels[a]['finished'] = -1;							
 		
@@ -811,31 +713,11 @@ $(document).ready(function() {
     		        audiochannels[index]['channel'].src = src.replace('2','1');
     		    }
 		        
-		        /*audiochannels[index]['channel'].addEventListener("load",function() {
-		            console.log('set currentTime to '+currentTime);
-                    this.currentTime = currentTime; 
-                });*/
 
 		        audiochannels[index]['channel'].addEventListener("loadedmetadata",function() {
                     this.currentTime = currentTime; 
                 });
                 
-		        //audiochannels[index]['channel'].position= currentTime;
-		        
-		    	//var panning = audiochannels[index]['panning'];
-
-		       /* if(panning=='left') {
-    		        audiochannels[index]['channel'].removeEventListener('MozAudioAvailable',audioWrittenLeft,false);
-	    	        audiochannels[index]['channel'].addEventListener('MozAudioAvailable', audioWrittenRight, false);
-	    	        audiochannels[index]['panning']='right';
-	    	    }
-		        if(panning=='right') {
-    		        audiochannels[index]['channel'].removeEventListener('MozAudioAvailable',audioWrittenRight,false);
-	    	        audiochannels[index]['channel'].addEventListener('MozAudioAvailable', audioWrittenLeft, false);
-	    	        audiochannels[index]['panning']='left';
-	    	    }
-				audiochannels[index]['channel'].addEventListener('loadedmetadata', loadedMetadata, false); 
-				*/ 
 
 		    }
 

@@ -279,6 +279,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		display: none;
 	}
 
+	#vid6-container {
+		right: 10px;
+	}
+
 	
 }
 
