@@ -179,8 +179,10 @@ $(document).ready(function() {
 	$('#headphones').mouseout(function() {
 	  	$(this).text('for headphones');
 	});
-	  
-	context = new AudioContext();
+	
+	var audioContext = window.AudioContext || window.webkitAudioContext;  
+
+	context = new audioContext();
 
 	$('.rew_btn').each(function (index,element) {
 
@@ -193,11 +195,15 @@ $(document).ready(function() {
 			drag: function(event,ui) {
 				if(audiochannels[id]!=undefined) {
 
+					console.log('time drag')
+
 					percent=ui.position.left/17*100;
 					$('#percent_'+id).text(percent.toFixed(0)+'%');
 					$('#percent_'+id).css('opacity',1);
 
 					var duration = audiochannels[id]['channel'].duration;
+
+					console.log(duration, percent, duration*percent/100)
 
 					audiochannels[id]['channel'].currentTime = duration*percent/100;
 				   }	
@@ -616,6 +622,8 @@ $(document).ready(function() {
 	
 	
 	function playTrack(link,index, itemId, itemSegmentCount) {
+
+		console.log('playtrack')
 	    
 	    // for making an exception for theintro.
 	    if(itemId===96 && itemSegmentCount===0) {
@@ -672,7 +680,7 @@ $(document).ready(function() {
 			$(link).parent().css('z-index', 10);
 			$(link).parent().css('position', 'relative');
 
-			audiochannels[index]['channel'].play();
+			//audiochannels[index]['channel'].play();
 			$('#state'+index).val('play');
 		} 
 		else if (state=='play') {
@@ -805,7 +813,9 @@ $(document).ready(function() {
         }
         
         if(showTextCount==0) {
-                showText($('#hint-box'), 'doubleclick any two words and drag one to the other', 0, 50,0);
+                showText($('#hint-box'), isMobile ? 
+                	'select a word until it supports scare quotes. select it again. select another word til it too supports scare quotes. select it again.' :
+                	'doubleclick any two words and drag one to the other', 0, 50,0);
                 showTextCount++;
        }
 
@@ -863,7 +873,9 @@ $(document).ready(function() {
 
             
             if(showTextCount==0) {
-                showText($('#hint-box'), 'doubleclick any two words and drag one to the other', 0, 50,0);
+                showText($('#hint-box'), isMobile ? 
+                	'select a word until it supports scare quotes. select it again. select another word til it too supports scare quotes. select it again.' :
+                	'doubleclick any two words and drag one to the other', 0, 50,0);
                 showTextCount++;
             }
             

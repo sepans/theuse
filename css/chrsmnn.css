@@ -241,7 +241,12 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 	}
 
 	.hint-box-container {
-		display: none;
+		position: fixed;
+		top: 5px;
+		left: 0;
+	}
+	#hint-box {
+		text-align: left;
 	}
 
 	#dot-box ul.tracks li#item-3322 .buttons .segment { display: none;}
