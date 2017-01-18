@@ -249,6 +249,9 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		text-align: left;
 	}
 
+	/* for iphone buttom click */
+	.grey_button { pointer-events: none;}
+
 	#dot-box ul.tracks li#item-3322 .buttons .segment { display: none;}
 	#dot-box ul.tracks li#item-3322 .buttons .segment:first-child { display: inline-block;}
 

@@ -143,8 +143,25 @@ $(document).ready(function() {
 		//	console.log('swipe', this)
 		//	this.removeClass('active')
 		//})
+		
+		$('.segment').on('click tap', function(e) {
+			/*
+				for mobile safari. the click events are captured by different elements in safari
+				so the onclick in the php doesn't work. this could be used instead of onclick in 
+				php for chrome as well but the e.target is different in chrome and safari
+			*/
+			var segmentCount = e.target.getAttribute('__data_segment_count');
+			var itemId =  e.target.getAttribute('__data_item_id');
+			var itemSegmentCount =  e.target.getAttribute('__data_item_segment_count');
+			if(segmentCount) {
+				playTrack($('#grey_btn_'+segmentCount), segmentCount, itemId, itemSegmentCount);
+			}
+		})
+
 
     }
+
+
 
     $('#mute_video').click(function() {
     	$('#vidsilent').toggle()

@@ -115,7 +115,7 @@ while($row = mysql_fetch_array($results))
 				$audio_path = $row['file_path'];
 		
 ?>
-						<li class="segment">
+						<li class="segment" __data_segment_count="<?php echo $segment_count; ?>" __data_item_id="<?php echo $item_id; ?>" __data_segment_count="<?php echo $item_segment_count; ?>">
 							
 							<span class="percent_box" id="percent_<?php echo $segment_count; ?>"></span>
 							<span id="rew_btn_cnt<?php echo $segment_count; ?>" class="rew">
