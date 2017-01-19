@@ -291,6 +291,10 @@ video { position: absolute; bottom: 150px; right: 200px; display: none; }
 		right: 10px;
 	}
 
+	.item-hover {
+		display: none;
+	}
+
 	
 }
 

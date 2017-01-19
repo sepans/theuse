@@ -36,6 +36,8 @@ var touchstartX = 0;
 var touchstartY = 0;
 var touchendX = 0;
 var touchendY = 0;
+
+var leftPanNode, rightPanNode;
  
  
 var BLUE_ENDPOINT_OPTS = { endpoint:"Rectangle",
@@ -55,35 +57,6 @@ var RED_ENDPOINT_OPTS = { endpoint:"Rectangle",
 		anchor: "TopCenter",
 		maxConnections : 3
 };
-
-
-/*
-if (Browser.Mozilla) {
-
-
-  	var signal = new Float32Array(2048);
-
-	var biquad=new Biquad(DSP.BPF_CONSTANT_PEAK, sampleRate);
-	biquad.setFilterType(DSP.HPF);
-	biquad.setF0(8822);
-	biquad.setBW(1.177);
-	//biquad.setS();
-	biquad.setQ(86.722);
-	biquad.setDbGain(-14);	
-
-	var output = new Audio();
-	var outputLeft = new Audio();
-	var outputRight = new Audio();
-
-	if ( typeof output.mozSetup === 'function' ) {
-	    output.mozSetup(2, sampleRate);
-	    outputLeft.mozSetup(2, sampleRate);
-	    outputRight.mozSetup(2, sampleRate);
-	}
-
-
-}
-*/
 
 
 
@@ -201,6 +174,19 @@ $(document).ready(function() {
 
 	context = new audioContext();
 
+    context.createGain = context.createGain || context.createGainNode; //fallback for gain naming
+
+
+
+    leftPanNode = context.createStereoPanner();
+    leftPanNode.pan.value = -1
+    leftPanNode.connect(context.destination)
+
+    rightPanNode = context.createStereoPanner();
+    rightPanNode.pan.value = 1
+    rightPanNode.connect(context.destination)
+
+    
 	$('.rew_btn').each(function (index,element) {
 
 		var elementId = $(element).attr('id');
@@ -454,13 +440,6 @@ $(document).ready(function() {
 	}
 
 
-
-    function loadedMetadata() {
-
-    	this.play()
-
-    }  
-      
       // Setup shared variables
 
 	var filterInterval = 4;
@@ -564,7 +543,25 @@ $(document).ready(function() {
 		}
 		*/
 
-		audiochannels[a]['channel'].addEventListener('loadedmetadata', loadedMetadata, false);  
+		audiochannels[a]['channel'].addEventListener('loadedmetadata', function() {
+			
+			if(leftFilterBusy == -1 && tracksPlaying > 0) {
+
+				var leftSource = context.createMediaElementSource(this)
+	    		leftSource.connect(leftPanNode)
+	    		leftFilterBusy = a;	
+
+			}
+			else if(rightFilterBusy == -1 && tracksPlaying > 1) {
+
+				var rightSource = context.createMediaElementSource(this)
+	    		rightSource.connect(rightPanNode)
+	    		rightFilterBusy = a;	
+
+			}
+    		this.play()
+
+		}, false);  
 						
 		audiochannels[a]['finished'] = -1;							
 		
@@ -740,6 +737,7 @@ $(document).ready(function() {
 		        
 
 		        audiochannels[index]['channel'].addEventListener("loadedmetadata",function() {
+		        	console.log('loadedmetadata inline callback')
                     this.currentTime = currentTime; 
                 });
                 
