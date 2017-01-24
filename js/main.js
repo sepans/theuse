@@ -176,15 +176,18 @@ $(document).ready(function() {
 
     context.createGain = context.createGain || context.createGainNode; //fallback for gain naming
 
+    if(context.createStereoPanner) { //check if implemented
 
+	    leftPanNode = context.createStereoPanner();
+	    leftPanNode.pan.value = -1
+	    leftPanNode.connect(context.destination)
 
-    leftPanNode = context.createStereoPanner();
-    leftPanNode.pan.value = -1
-    leftPanNode.connect(context.destination)
+	    rightPanNode = context.createStereoPanner();
+	    rightPanNode.pan.value = 1
+	    rightPanNode.connect(context.destination)
 
-    rightPanNode = context.createStereoPanner();
-    rightPanNode.pan.value = 1
-    rightPanNode.connect(context.destination)
+    }
+
 
     
 	$('.rew_btn').each(function (index,element) {
@@ -545,14 +548,14 @@ $(document).ready(function() {
 
 		audiochannels[a]['channel'].addEventListener('loadedmetadata', function() {
 			
-			if(leftFilterBusy == -1 && tracksPlaying > 0) {
+			if(leftFilterBusy == -1 && tracksPlaying > 0 && leftPanNode) {
 
 				var leftSource = context.createMediaElementSource(this)
 	    		leftSource.connect(leftPanNode)
 	    		leftFilterBusy = a;	
 
 			}
-			else if(rightFilterBusy == -1 && tracksPlaying > 1) {
+			else if(rightFilterBusy == -1 && tracksPlaying > 1 && rightPanNode) {
 
 				var rightSource = context.createMediaElementSource(this)
 	    		rightSource.connect(rightPanNode)
