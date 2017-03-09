@@ -58,7 +58,7 @@ ul {list-style: none;}
 .text-dragable-cnt:hover .text-container p { padding-right: 2px !important;}
 .text-dragable-cnt:hover .text-container ul { padding-right: 2px !important;}
 
-.percent_box { opacity: 0; width: 10px; height: 8px;  font-size: 8px; line-height: 8px; display:inline-block;}
+.percent_box { opacity: 0; width: 10px; height: 6px;  font-size: 8px; line-height: 8px; display:inline-block;}
 
 #youarehere { width: 200px; height: 200px; position: absolute; top: 150px; left: 240px; background-image: url('../../images/youarehere.gif'); display:none;}
 

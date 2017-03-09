@@ -227,13 +227,10 @@ $(document).ready(function() {
 			//var percent = Math.max(Math.min(e.screenX - dragStartX, maxDrag), 0)/maxDrag * 100
 			var percent = lastPercent
 
-			var duration = audiochannels[dragElementId]['channel'].duration;
-			var currentTime = duration*percent / 100;
-			console.log('currentTime', audiochannels[dragElementId]['channel'].currentTime)
-			console.log(duration, percent)
-			console.log('new time', currentTime)
 
 			if(audiochannels[dragElementId]['channel']) {
+				var duration = audiochannels[dragElementId]['channel'].duration;
+				var currentTime = duration*percent / 100;
 				audiochannels[dragElementId]['channel'].currentTime = duration*percent / 100;
 			}
 
