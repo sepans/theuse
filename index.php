@@ -118,13 +118,8 @@ while($row = mysql_fetch_array($results))
 						<li class="segment" __data_segment_count="<?php echo $segment_count; ?>" __data_item_id="<?php echo $item_id; ?>" __data_segment_count="<?php echo $item_segment_count; ?>">
 							
 							<span class="percent_box" id="percent_<?php echo $segment_count; ?>"></span>
-							<span id="rew_btn_cnt<?php echo $segment_count; ?>" class="rew">
-								<span class="rew_btn" id="rew_btn_<?php echo $segment_count; ?>" onclick="playTrack($('#grey_btn_<?php echo $segment_count; ?>'),<?php echo $segment_count; ?>,<?php echo $item_id; ?>,<?php echo $item_segment_count; ?>);"></span>
-							</span>
+							<span id="rew_btn_cnt<?php echo $segment_count; ?>" class="grey_button"></span>
 							<!--<a class="button" id="grey_btn_<?php echo $segment_count; ?>" href="#" >&nbsp;</a>-->
-							<span class="grey_button"  id="grey_btn_<?php echo $segment_count; ?>"></span>
-							<input type="hidden" id="state<?php echo $segment_count; ?>" class="state" value="rest"/>
-							<input type="hidden" id="channel<?php echo $segment_count; ?>" class="channel" value="-1"/>
 							<script type="text/javascript">
 								if(Browser.Safari && !Browser.Chrome) {
 									<?php $mp3path = str_replace(".ogg",".mp3",$audio_path); 
