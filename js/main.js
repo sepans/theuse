@@ -192,8 +192,56 @@ $(document).ready(function() {
 
     }
 
+    var dragStartX, dragElementPercent, dragElementId, maxDrag = 30, lastPercent = 0;
 
-    
+    [].forEach.call(document.querySelectorAll('.segment .grey_button'), function(btn) {
+    	 btn.addEventListener('dragstart', function(e) {
+
+			var elementId = e.target.id;
+			dragElementId=elementId.substring(elementId.lastIndexOf('_cnt')+4);
+			dragElementPercent = $('#percent_'+dragElementId)
+			console.log(elementId, dragElementId, dragElementPercent)
+
+			dragElementPercent.css('opacity', 1);
+
+    	 	//console.log('dragstart', e)
+    	 	dragStartX = e.screenX
+    	 }, false);
+    	 btn.addEventListener('drag', function(e) {
+    	 	//console.log('drag', e)
+    	 	//console.log('e.sx', e.screenX)
+
+			var percent = Math.max(Math.min(e.screenX - dragStartX, maxDrag), 0)/maxDrag * 100
+
+			dragElementPercent.text(percent.toFixed(0)+'%');
+
+			//console.log('percent', percent)
+			if(e.screenX > 1) {
+				lastPercent = percent
+
+			}
+
+    	 }, false);
+    	 btn.addEventListener('dragend', function(e) {
+
+			//var percent = Math.max(Math.min(e.screenX - dragStartX, maxDrag), 0)/maxDrag * 100
+			var percent = lastPercent
+
+			var duration = audiochannels[dragElementId]['channel'].duration;
+			var currentTime = duration*percent / 100;
+			console.log('currentTime', audiochannels[dragElementId]['channel'].currentTime)
+			console.log(duration, percent)
+			console.log('new time', currentTime)
+
+			if(audiochannels[dragElementId]['channel']) {
+				audiochannels[dragElementId]['channel'].currentTime = duration*percent / 100;
+			}
+
+			dragElementPercent.css('opacity', 0);
+    	 	dragStartX = 0
+    	 }, false);
+    })
+	/*    
 	$('.rew_btn').each(function (index,element) {
 
 		var elementId = $(element).attr('id');
@@ -228,6 +276,8 @@ $(document).ready(function() {
 		});
 			
 	});
+	*/
+
 		
 		
     $('.state').val('rest');
@@ -703,7 +753,7 @@ $(document).ready(function() {
 		
 		var trackId = 'track'+index;
 		//console.log(trackId);
-		var audio=document.getElementById(trackId);
+		//var audio=document.getElementById(trackId); //not needed?!
 		if(state=='rest') {
 			$(link).css('background-color','red');
 			$(link).parent().css('z-index', 10);

@@ -120,7 +120,7 @@ while($row = mysql_fetch_array($results))
 							<span class="percent_box" id="percent_<?php echo $segment_count; ?>"></span>
 							<span id="rew_btn_cnt<?php echo $segment_count; ?>" class="grey_button"
 								__data_segment_count="<?php echo $segment_count; ?>" __data_item_id="<?php echo $item_id; ?>"
-								__data_item_segment_count="<?php echo $item_segment_count; ?>" __data_state="rest"></span>
+								__data_item_segment_count="<?php echo $item_segment_count; ?>" __data_state="rest" draggable="true"></span>
 							<!--<a class="button" id="grey_btn_<?php echo $segment_count; ?>" href="#" >&nbsp;</a>-->
 							<script type="text/javascript">
 								if(Browser.Safari && !Browser.Chrome) {
