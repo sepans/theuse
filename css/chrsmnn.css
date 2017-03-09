@@ -24,7 +24,7 @@ ul {list-style: none;}
 #dot-box ul.tracks a .words {display: none; padding-left: 150px; }
 #dot-box ul.tracks .buttons { padding: 0; margin: 0 0 0 -2px;}
 #dot-box ul.tracks .buttons li { display: inline-block; margin: 0px 12px 8px 0;}
-.grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 50%;}
+.grey_button {width: 8px; height: 8px; background-color: #aaa; display: block; -moz-border-radius: 4px; border-radius: 50%; cursor: pointer;}
 
 #text-box {  float: right; width: 250px; padding: 0 10px; margin-right: 5px; display: block;}
 .search-input { border: 1px solid black; width: 250px; font-size: 12px;}

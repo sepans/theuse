@@ -123,16 +123,20 @@ $(document).ready(function() {
 				so the onclick in the php doesn't work. this could be used instead of onclick in 
 				php for chrome as well but the e.target is different in chrome and safari
 			*/
-			var segmentCount = e.target.getAttribute('__data_segment_count');
-			var itemId =  e.target.getAttribute('__data_item_id');
-			var itemSegmentCount =  e.target.getAttribute('__data_item_segment_count');
-			if(segmentCount) {
-				playTrack($('#grey_btn_'+segmentCount), segmentCount, itemId, itemSegmentCount);
-			}
+
+			//not very elegant. the btn is the li.segment's second child
+			var btn = e.target.children[1];
+
+			playTrackPrepare(btn)
 		})
 
 
     }
+
+    //add event listener to segment gray btns
+    $('.segment .grey_button').click(function(e) {
+    	playTrackPrepare(e.target)
+    })
 
 
 
@@ -635,13 +639,20 @@ $(document).ready(function() {
 	    
 	}
 	
+	function playTrackPrepare(btn) {
+
+		var segmentCount = parseInt(btn.getAttribute('__data_segment_count'));
+		var itemId =  parseInt(btn.getAttribute('__data_item_id'));
+		var itemSegmentCount =  parseInt(btn.getAttribute('__data_item_segment_count'));
+
+		playTrack(btn, segmentCount, itemId, itemSegmentCount);
+
+	}
 
 	
 	
 	function playTrack(link,index, itemId, itemSegmentCount) {
 
-		console.log('playtrack')
-	    
 	    // for making an exception for theintro.
 	    if(itemId===96 && itemSegmentCount===0) {
 	        $('#vid6-container').toggle();
@@ -650,14 +661,14 @@ $(document).ready(function() {
 	        return;
 	    }
 	    else if(itemId===96 && itemSegmentCount===1) {
-	        var state=$('#state1').val();
+	        var state= getBtnState(link)
 	        if(state==='rest'){
 	            loadText(3328);
 	        }
 	        return;
 	    }
 	    else if(itemId===96 && itemSegmentCount===2) {
-	        var state=$('#state2').val();
+	        var state= getBtnState(link)
 	        if(state==='rest'){
     	        loadText(3330);
 	        }
@@ -687,7 +698,8 @@ $(document).ready(function() {
 	    
 
 		
-		var state=$('#state'+index).val();
+		//var state=$('#state'+index).val();
+		var state = getBtnState(link)
 		
 		var trackId = 'track'+index;
 		//console.log(trackId);
@@ -698,7 +710,7 @@ $(document).ready(function() {
 			$(link).parent().css('position', 'relative');
 
 			//audiochannels[index]['channel'].play();
-			$('#state'+index).val('play');
+			setBtnState(link, 'play')
 		} 
 		else if (state=='play') {
 			$(link).css('background-color','green');
@@ -709,7 +721,7 @@ $(document).ready(function() {
 
 			audiochannels[index]['channel'].pause();
 			
-			$('#state'+index).val('pause');
+			setBtnState(link, 'pause')
 
 			console.log('filter release: '+filterBusy);
 			if(filterBusy==index) {
@@ -751,13 +763,22 @@ $(document).ready(function() {
 
 			$(link).css('background-color','red');
 			audiochannels[index]['channel'].play();
-			$('#state'+index).val('play');
+
+			setBtnState(link, 'play')
 			
 		}
 
 		return false;
 	}
 
+	function getBtnState(btn) {
+		return btn.getAttribute('__data_state');
+	}
+
+	function setBtnState(btn, state) {
+		btn.setAttribute('__data_state', state);
+
+	}
 	
 	function showBody(containerId) {
 		var body = $('#'+containerId).html();
