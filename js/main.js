@@ -599,14 +599,14 @@ $(document).ready(function() {
 
 		audiochannels[a]['channel'].addEventListener('loadedmetadata', function() {
 			
-			if(leftFilterBusy == -1 && tracksPlaying > 0 && leftPanNode) {
+			if(leftFilterBusy == -1 && tracksPlaying > 0 && leftPanNode && false) {
 
 				var leftSource = context.createMediaElementSource(this)
 	    		leftSource.connect(leftPanNode)
 	    		leftFilterBusy = a;	
 
 			}
-			else if(rightFilterBusy == -1 && tracksPlaying > 1 && rightPanNode) {
+			else if(rightFilterBusy == -1 && tracksPlaying > 1 && rightPanNode && false) {
 
 				var rightSource = context.createMediaElementSource(this)
 	    		rightSource.connect(rightPanNode)
