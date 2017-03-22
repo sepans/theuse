@@ -67,12 +67,12 @@ $(document).ready(function() {
 
     var screen_saver_2 = ScreenSaver(window,$,sentences,{start_after_time: 40, overlay: true, dice: $('#dice2')});     
     
-    addHoverToDot($($('#item-96 li .rew_btn')[1]), 'cantquite-title', 'cant quite tell') 
-    addHoverToDot($($('#item-96 li .rew_btn')[2]), 'thingsidlike-title', 'things i\'d like to have said') 
+    addHoverToDot($('[__data_item_id=96][__data_item_segment_count=1]'), 'cantquite-title', 'cant quite tell') 
+    addHoverToDot($('[__data_item_id=96][__data_item_segment_count=2]'), 'thingsidlike-title', 'things i\'d like to have said') 
     
-    addHoverToDot($($('#item-95 li .rew_btn')[0]), 'speaking-title', 'speaking is difficult') 
-    addHoverToDot($($('#item-95 li .rew_btn')[1]), 'goon-title', 'go on, make me') 
-    addHoverToDot($($('#item-95 li .rew_btn')[2]), 'almost-title', 'this, almost') 
+    addHoverToDot($('[__data_item_id=95][__data_item_segment_count=0]'), 'speaking-title', 'speaking is difficult') 
+    addHoverToDot($('[__data_item_id=95][__data_item_segment_count=1]'), 'goon-title', 'go on, make me') 
+    addHoverToDot($('[__data_item_id=95][__data_item_segment_count=2]'), 'almost-title', 'this, almost') 
 
     $('.speaking').click(function(e) {
     	speakingOpen = !speakingOpen;
