@@ -37,7 +37,7 @@ var touchstartY = 0;
 var touchendX = 0;
 var touchendY = 0;
 
-var leftPanNode, rightPanNode;
+var leftGainNodeL, leftGainNodeR, rightGainNodeL, rightGainNodeR, leftSplitter, rightSplitter, leftMerger, rightMerger;
  
  
 var BLUE_ENDPOINT_OPTS = { endpoint:"Rectangle",
@@ -180,8 +180,9 @@ $(document).ready(function() {
 
     context.createGain = context.createGain || context.createGainNode; //fallback for gain naming
 
-    if(context.createStereoPanner) { //check if implemented
+    if(context.createGain) { //check if implemented
 
+    	/*
 	    leftPanNode = context.createStereoPanner();
 	    leftPanNode.pan.value = -1
 	    leftPanNode.connect(context.destination)
@@ -189,6 +190,46 @@ $(document).ready(function() {
 	    rightPanNode = context.createStereoPanner();
 	    rightPanNode.pan.value = 1
 	    rightPanNode.connect(context.destination)
+	    */
+
+	    //left
+
+	    leftGainNodeL = context.createGain();
+	    leftGainNodeR = context.createGain();
+
+	    leftSplitter = context.createChannelSplitter(2);
+	    leftMerger = context.createChannelMerger(2);
+
+	    leftSplitter.connect(leftGainNodeL, 0)
+	    leftSplitter.connect(leftGainNodeR, 1)
+
+	    leftGainNodeL.connect(leftMerger, 0, 0)
+	    leftGainNodeR.connect(leftMerger, 0, 1)
+
+	    leftGainNodeL.gain.value = 1;
+	    leftGainNodeR.gain.value = 0;
+
+	    leftMerger.connect(context.destination)
+
+	    // right
+
+	    rightGainNodeL = context.createGain();
+	    rightGainNodeR = context.createGain();
+
+	    rightSplitter = context.createChannelSplitter(2);
+	    rightMerger = context.createChannelMerger(2);
+
+	    rightSplitter.connect(rightGainNodeL, 0)
+	    rightSplitter.connect(rightGainNodeR, 1)
+
+	    rightGainNodeL.connect(rightMerger, 0, 0)
+	    rightGainNodeR.connect(rightMerger, 0, 1)
+
+	    rightGainNodeL.gain.value = 0;
+	    rightGainNodeR.gain.value = 1;
+
+	    rightMerger.connect(context.destination)
+
 
     }
 
@@ -599,17 +640,21 @@ $(document).ready(function() {
 
 		audiochannels[a]['channel'].addEventListener('loadedmetadata', function() {
 			
-			if(leftFilterBusy == -1 && tracksPlaying > 0 && leftPanNode && false) {
-
+			if(leftFilterBusy == -1 && tracksPlaying > 0 && leftSplitter) {
 				var leftSource = context.createMediaElementSource(this)
-	    		leftSource.connect(leftPanNode)
+
+	    		leftSource.connect(leftSplitter);
+	    		
 	    		leftFilterBusy = a;	
 
 			}
-			else if(rightFilterBusy == -1 && tracksPlaying > 1 && rightPanNode && false) {
+			else if(rightFilterBusy == -1 && tracksPlaying > 1 && rightSplitter) {
 
+				console.log('to right')
 				var rightSource = context.createMediaElementSource(this)
-	    		rightSource.connect(rightPanNode)
+	    		
+	    		rightSource.connect(rightSplitter);
+	    		
 	    		rightFilterBusy = a;	
 
 			}
