@@ -182,16 +182,6 @@ $(document).ready(function() {
 
     if(context.createGain) { //check if implemented
 
-    	/*
-	    leftPanNode = context.createStereoPanner();
-	    leftPanNode.pan.value = -1
-	    leftPanNode.connect(context.destination)
-
-	    rightPanNode = context.createStereoPanner();
-	    rightPanNode.pan.value = 1
-	    rightPanNode.connect(context.destination)
-	    */
-
 	    //left
 
 	    leftGainNodeL = context.createGain();
@@ -599,44 +589,7 @@ $(document).ready(function() {
                 $('#grey_btn_'+a).css('background-color','#AAA');
             });
             
-		/*
-        if (Browser.Mozilla) {
-           
-			if(filterBusy==-1 && enableFilters && !nofilter) {
-	
 
-				audiochannels[a]['channel'].addEventListener('MozAudioAvailable', audioWritten, false);
-	
-				audiochannels[a]['channel'].addEventListener('loadedmetadata', loadedMetadata, false);  	
-				
-				filterBusy= a;
-				
-			} else if(leftFilterBusy == -1  && tracksPlaying>0 && !nofilter) {
-
-
-
-				audiochannels[a]['channel'].addEventListener('MozAudioAvailable', audioWrittenLeft, false);
-	
-				audiochannels[a]['channel'].addEventListener('loadedmetadata', loadedMetadata, false); 
-					 
-				leftFilterBusy = a;	
-			
-			
-			} else if(rightFilterBusy == -1  && tracksPlaying>1 && !nofilter) {
-			
-
-				audiochannels[a]['channel'].addEventListener('MozAudioAvailable', audioWrittenRight, false);
-	
-				audiochannels[a]['channel'].addEventListener('loadedmetadata', loadedMetadata, false);  
-					 
-				rightFilterBusy = a;	
-			
-			} 
-			else {
-			    console.log('no effect');
-			}
-		}
-		*/
 
 		audiochannels[a]['channel'].addEventListener('loadedmetadata', function() {
 			
