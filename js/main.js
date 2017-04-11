@@ -89,9 +89,11 @@ $(document).ready(function() {
 
     	var textContainers = document.querySelectorAll('.text-container')
 
+
     	textContainers.forEach(function(containerEl) {
 
     		containerEl.addEventListener('touchstart', function(event) {
+    			console.log('touchstart')
 				touchstartX = event.touches[0].screenX;
 			    touchstartY = event.touches[0].screenY;
     		})
@@ -103,7 +105,35 @@ $(document).ready(function() {
     				this.classList.remove('active')
     			}
     			
+
+
     		})
+
+    		var mousedown = false;
+
+    		//similar to above. for ios safari
+
+    		containerEl.addEventListener('mousedown', function(e) {
+    			mousedown = true
+				touchstartX = e.screenX;
+			    touchstartY = e.screenY;
+	    	})
+    		containerEl.addEventListener('mouseup', function(e) {
+	    			selectText($(containerEl)); 
+	    			mousedown = false
+	    	})
+
+    		containerEl.addEventListener('mousemove', function(e) {
+				if(mousedown) {
+	    			touchendX = e.screenX;
+	    			touchendY = e.screenY;
+					console.log(touchstartX, touchendX, touchendX - touchstartX)
+	    			if( touchstartX && touchendX - touchstartX > 30 ) {
+	    				touchstartX = null;
+	    				this.classList.remove('active')
+	    			}
+				}
+	    	})
 
     	})
 
@@ -381,9 +411,12 @@ $(document).ready(function() {
   	});	
 
 
-  	$('.text-container').bind('touchend' ,function() {
+
+
+  	$('.text-container').on('touchend' ,function() {
        selectText(this); 
   	});	
+
 
           
     if(presets!='none') {
@@ -545,13 +578,17 @@ $(document).ready(function() {
     		if(!video.src) {
     			console.log(Browser, Browser.Safari)
     			if(Browser.Safari) {
-    				//filename = filename.replace('webm', 'mp4')
+    				filename = filename.replace('webm', 'mp4')
     				console.log(filename)
     			}
-    			video.src= '/video/'+filename;
+    			video.src= 'video/'+filename;
     			console.log(video.src)
     		}
-    		video.play();
+    		video.addEventListener('loadedmetadata', function() {
+    			console.log('playing vid')
+	    		video.play();
+
+    		})
     		_videoPlaying +=1;
     		$(video).on('ended', function(){
                 console.log("video ended");
