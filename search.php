@@ -43,7 +43,7 @@
 	$res = mysqli_query($con, $body_query);
    	$rows = array();
 	//echo $res;
-	if($r = mysql_fetch_assoc($res)) {
+	if($r = mysqli_fetch_assoc($res)) {
 	    $rows[] = $r;
 	}
 //print $rows[0]['body'];

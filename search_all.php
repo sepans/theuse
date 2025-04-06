@@ -36,7 +36,7 @@
 	$rows = array();
    
   
-while($r = mysql_fetch_assoc($res)) {
+while($r = mysqli_fetch_assoc($res)) {
    //$rows[] = $r['title'];
    $id = $r['id'];
    $title = $r['display_title'];
