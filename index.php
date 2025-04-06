@@ -15,7 +15,7 @@
 
 		$results = mysqli_query($con, $sql) or die(mysql_error()); 
 
-		while($row = mysql_fetch_array($results))
+		while($row = mysqli_fetch_array($results))
 		{
 		  $total_segment_count = $row['cc'];
 		}
@@ -78,7 +78,7 @@ $content = '';
 $item_count = 0;
 $segment_count = 0;
 $item_segment_count = 0;
-while($row = mysql_fetch_array($results))
+while($row = mysqli_fetch_array($results))
  {
   $title = $row['title'];
   $display_title = $row['display_title'];
@@ -110,7 +110,7 @@ while($row = mysql_fetch_array($results))
 
 			$segment_results = mysqli_query($con, $segment_sql) or die(mysql_error()); 
 
-			while($row = mysql_fetch_array($segment_results))
+			while($row = mysqli_fetch_array($segment_results))
 			{
 				$audio_path = $row['file_path'];
 		
@@ -219,7 +219,7 @@ while($row = mysql_fetch_array($results))
 	$sql="SELECT * FROM item order by id";
 
 	$results = mysqli_query($con, $sql) or die(mysql_error()); 
-	while($row = mysql_fetch_array($results))
+	while($row = mysqli_fetch_array($results))
  	{
   		$title = $row['title'];
 	    $display_title = $row['display_title'];
