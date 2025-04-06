@@ -26,8 +26,8 @@
 	
 	$query = $search_query;
 
-	mysqli_query('SET CHARACTER SET utf8');
-	$res = mysqli_query($query);
+	mysqli_query($con, 'SET CHARACTER SET utf8');
+	$res = mysqli_query($con, $query);
 	if(!$res) {
 		echo 'no res';
 		return;
