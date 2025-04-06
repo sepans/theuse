@@ -39,8 +39,8 @@
 	//else if($id !=null)	
 	//	$query = $body_query;
 
-	mysql_query('SET CHARACTER SET utf8');
-	$res = MySQL_query($body_query);
+	mysqli_query('SET CHARACTER SET utf8');
+	$res = mysqli_query($body_query);
    	$rows = array();
 	//echo $res;
 	if($r = mysql_fetch_assoc($res)) {

@@ -13,7 +13,7 @@
 
 		$sql="SELECT count(*) as cc FROM segment";
 
-		$results = mysql_query($sql) or die(mysql_error()); 
+		$results = mysqli_query($sql) or die(mysql_error()); 
 
 		while($row = mysql_fetch_array($results))
 		{
@@ -71,7 +71,7 @@
 
 $sql="SELECT * FROM item where display=1 order by id";
 
-$results = mysql_query($sql) or die(mysql_error()); 
+$results = mysqli_query($sql) or die(mysql_error()); 
 
 //$json_text = json_encode($results);
 $content = '';
@@ -108,7 +108,7 @@ while($row = mysql_fetch_array($results))
 
 			$segment_sql="SELECT * FROM segment where item_id=".$item_id;
 
-			$segment_results = mysql_query($segment_sql) or die(mysql_error()); 
+			$segment_results = mysqli_query($segment_sql) or die(mysql_error()); 
 
 			while($row = mysql_fetch_array($segment_results))
 			{
@@ -218,7 +218,7 @@ while($row = mysql_fetch_array($results))
 <?php	
 	$sql="SELECT * FROM item order by id";
 
-	$results = mysql_query($sql) or die(mysql_error()); 
+	$results = mysqli_query($sql) or die(mysql_error()); 
 	while($row = mysql_fetch_array($results))
  	{
   		$title = $row['title'];
